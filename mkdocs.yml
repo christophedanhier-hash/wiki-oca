@@ -46,7 +46,10 @@ nav:
       - Aperçu: t600/index.md
       - Documentation technique: t600/technique.md
       - Formation opérateur: t600/formation.md
-      - Sources & ethnographie: t600/sources.md
+      - 📚 Sources & ethnographie: t600/sources.md
+      - 🤖 Analyse Cowork (Copilot):
+        - Présentation: t600/cowork/index.md
+        - Analyse comparative: t600/cowork/comparative.md
   - 🏢 Bureau Gérard:
       - Présentation: bureau-gerard/index.md
       - Les 8 agents: bureau-gerard/agents.md

@@ -1,5 +1,15 @@
 # Documentation Technique — Telescope T600 OCA
 
+!!! warning "Corrections appliquées (source : Analyse comparative Cowork)"
+    Les corrections suivantes ont été intégrées suite à l'analyse comparative Hermes vs Cowork (juin 2026) :
+
+    - **🔴 D1** — Sous-réseau IPX800 : `192.168.**0**.236/.237/.238` (et non 192.168.1.x)
+    - **🔴 D2** — Ordre extinction Niveau 2 : Arrêt info avant coupure des relais
+    - **🟡 D3** — Sonde température NUC ajoutée : `192.168.0.234`
+    - **🟡 D4** — Pilotage manuel cimiers (interrupteurs de secours) documenté
+
+    Voir [l'analyse comparative](../cowork/comparative.md) pour le détail complet.
+
 ## Métadonnées
 
 | Champ | Valeur |

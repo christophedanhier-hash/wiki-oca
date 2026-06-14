@@ -1,5 +1,15 @@
 # Formation Opérateur — Télescope T600
 
+!!! tip "Enrichissements issus de l'analyse Cowork"
+    Cette formation a été enrichie avec les apports de l'analyse Cowork (Microsoft Copilot) :
+
+    - ✅ **Objectifs SMART** détaillés par module
+    - ✅ **QCM** 10 questions avec corrigé (annexe)
+    - ✅ **Annexe formateur** avec pièges classiques
+    - ✅ **Analyse des risques** avec coûts de résolution
+
+    Voir [l'analyse comparative](../cowork/comparative.md) et [la présentation Cowork](../cowork/index.md).
+
 ## Métadonnées
 
 | Champ | Valeur |
