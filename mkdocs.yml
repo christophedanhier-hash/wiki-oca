@@ -1,0 +1,52 @@
+site_name: Wiki OCA — T600
+site_description: Documentation du Projet T600 pour l'Observatoire Centre Ardenne
+site_author: Christophe Danhier & Bureau Gérard
+repo_url: https://github.com/christophedanhier-hash/wiki-oca
+edit_uri: edit/main/docs/
+copyright: "&copy; 2026 Christophe Danhier &mdash; Propulsé par Bureau Gérard"
+
+theme:
+  name: material
+  language: fr
+  palette:
+    primary: teal
+    accent: orange
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.highlight
+    - search.suggest
+    - content.code.copy
+    - content.action.edit
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/christophedanhier-hash
+    - icon: fontawesome/solid/globe
+      link: https://observatoire-centre-ardenne.be/
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - tables
+  - toc:
+      permalink: true
+
+nav:
+  - Accueil: index.md
+  - 🔭 Projet T600:
+      - Aperçu: t600/index.md
+      - Documentation technique: t600/technique.md
+      - Formation opérateur: t600/formation.md
+      - Sources & ethnographie: t600/sources.md
+  - 🏢 Bureau Gérard:
+      - Présentation: bureau-gerard/index.md
+      - Les 8 agents: bureau-gerard/agents.md
