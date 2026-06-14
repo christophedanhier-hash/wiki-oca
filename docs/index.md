@@ -21,8 +21,8 @@ Le **T600** est un télescope automatisé de type Newton sur monture équatorial
 
 | Section | Description |
 |---------|-------------|
-| [🔭 Projet T600](t600/) | Documentation technique, formation, sources |
-| [🏢 Bureau Gérard](bureau-gerard/) | Équipe de documentation virtuelle |
+| [🔭 Projet T600](t600/index.md) | Documentation technique, formation, sources |
+| [🏢 Bureau Gérard](bureau-gerard/index.md) | Équipe de documentation virtuelle |
 
 ---
 

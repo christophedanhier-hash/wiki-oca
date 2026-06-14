@@ -8,7 +8,7 @@
     - ✅ **Annexe formateur** avec pièges classiques
     - ✅ **Analyse des risques** avec coûts de résolution
 
-    Voir [l'analyse comparative](../cowork/comparative.md) et [la présentation Cowork](../cowork/index.md).
+    Voir [l'analyse comparative](cowork/comparative.md) et [la présentation Cowork](cowork/index.md).
 
 ## Métadonnées
 

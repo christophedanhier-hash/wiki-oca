@@ -8,7 +8,7 @@
     - **🟡 D3** — Sonde température NUC ajoutée : `192.168.0.234`
     - **🟡 D4** — Pilotage manuel cimiers (interrupteurs de secours) documenté
 
-    Voir [l'analyse comparative](../cowork/comparative.md) pour le détail complet.
+    Voir [l'analyse comparative](cowork/comparative.md) pour le détail complet.
 
 ## Métadonnées
 
