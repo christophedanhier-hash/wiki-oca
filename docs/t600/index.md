@@ -8,7 +8,9 @@ Le **T600** est un télescope automatisé de 600 mm d'ouverture, installé à l'
 
 Télescope de type **Newton sur monture équatoriale allemande** (GEM), intégré dans un **dôme motorisé** de 4500 mm avec coupole rotative et cimiers automatisés. L'objectif principal du projet est de **documenter et préserver la connaissance** accumulée par Christian et Jean-Paul pour assurer la maintenance et l'évolution du système.
 
-## Équipe documentaire — Bureau Gérard
+## Équipe documentaire — Bureau Gérard (BAVI LEO)
+
+→ Voir le détail des [🧠 8 agents sur BAVI LEO](https://christophedanhier-hash.github.io/BAVI_LEO/wiki/prive/gerard/agents/)
 
 | Agent | Rôle |
 |-------|------|

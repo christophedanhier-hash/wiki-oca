@@ -6,7 +6,7 @@ Bienvenue sur le **Wiki OCA** — documentation technique du **Projet T600**, un
 
 ## 🔭 Le Projet T600 en bref
 
-Le **T600** est un télescope automatisé de type Newton sur monture équatoriale, conçu pour l'observation et l'astrophotographie. Ce projet est porté par **Jean-Paul Dumoulin** et **Christian** de l'Observatoire Centre Ardenne, avec le soutien du **Bureau Gérard** pour la documentation technique.
+Le **T600** est un télescope automatisé de type Newton sur monture équatoriale, conçu pour l'observation et l'astrophotographie. Ce projet est porté par **Jean-Paul Dumoulin** et **Christian** de l'Observatoire Centre Ardenne, avec le soutien du **Bureau Gérard** ([BAVI LEO](https://christophedanhier-hash.github.io/BAVI_LEO/)) pour la documentation technique.
 
 ### Objectifs
 
@@ -22,13 +22,13 @@ Le **T600** est un télescope automatisé de type Newton sur monture équatorial
 | Section | Description |
 |---------|-------------|
 | [🔭 Projet T600](t600/index.md) | Documentation technique, formation, sources |
-| [🏢 Bureau Gérard](bureau-gerard/index.md) | Équipe de documentation virtuelle |
+|| [➡️ Bureau Gérard (BAVI LEO)](bureau-gerard/index.md) | Déplacé vers le hub BAVI LEO |
 
 ---
 
 ## 🤝 Contribuer
 
-Ce wiki est maintenu par **Christophe Danhier** avec le **Bureau Gérard** — un cabinet virtuel de 8 agents spécialisés dans la documentation technique.
+Ce wiki est maintenu par **Christophe Danhier** avec le **Bureau Gérard** ([BAVI LEO](https://christophedanhier-hash.github.io/BAVI_LEO/)) — un cabinet virtuel d'agents spécialisés dans la documentation technique.
 
 Pour toute question ou contribution, contacter Christophe via l'Observatoire Centre Ardenne.
 

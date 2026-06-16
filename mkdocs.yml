@@ -1,9 +1,9 @@
 site_name: Wiki OCA — T600
 site_description: Documentation du Projet T600 pour l'Observatoire Centre Ardenne
-site_author: Christophe Danhier & Bureau Gérard
+site_author: Christophe Danhier & Bureau Gérard (BAVI LEO)
 repo_url: https://github.com/christophedanhier-hash/wiki-oca
 edit_uri: edit/main/docs/
-copyright: "&copy; 2026 Christophe Danhier &mdash; Propulsé par Bureau Gérard"
+copyright: "&copy; 2026 Christophe Danhier &mdash; Documentation via le Bureau Gérard (BAVI LEO)"
 
 theme:
   name: material
@@ -50,6 +50,5 @@ nav:
       - 🤖 Analyse Cowork (Copilot):
         - Présentation: t600/cowork/index.md
         - Analyse comparative: t600/cowork/comparative.md
-  - 🏢 Bureau Gérard:
-      - Présentation: bureau-gerard/index.md
-      - Les 8 agents: bureau-gerard/agents.md
+  - ➡️ Bureau Gérard (BAVI LEO):
+      - Redirection: bureau-gerard/index.md

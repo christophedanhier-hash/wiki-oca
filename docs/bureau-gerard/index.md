@@ -1,39 +1,29 @@
-# 🏢 Bureau Gérard — Cabinet virtuel de documentation technique
+# ➡️ Bureau Gérard — Déplacé vers BAVI LEO
 
-> *« Coordonner, extraire, valider, assembler — une chaîne documentaire complète pour les équipements complexes. »*
+> ⚠️ *Le Bureau Gérard a été déplacé vers le nouveau hub documentaire **BAVI LEO**.*
 
-Le **Bureau Gérard** est un cabinet virtuel de **documentation technique d'équipements complexes**, piloté par Christophe Danhier. Son cas d'usage principal est le **télescope T600** de l'Observatoire Centre Ardenne.
+Le **Bureau Gérard** fait désormais partie intégrante de **BAVI LEO** (Bureaux Agentiques Virtuels), la plateforme centralisée qui regroupe tous les bureaux de compétence — PRO et PRIVÉ.
 
-## Pourquoi le Bureau Gérard ?
+## 🔗 Accès direct
 
-Le T600 est un système complexe combinant :
-- **Mécanique optique** — monture équatoriale, Newton 600 mm, collimation
-- **Électronique de puissance** — motorisation, alimentation, protections
-- **Automatisme** — automate IPX800, cartes Pléiades, watchdog
-- **Firmware** — Arduino, ESP32, communication radio NRF24L01
-- **Réseau** — WiFi, Ethernet, supervision à distance
+👉 [**Bureau Gérard — BAVI LEO**](https://christophedanhier-hash.github.io/BAVI_LEO/wiki/prive/gerard/)
 
-La connaissance de ces systèmes est portée par **Christian Wanlin** et **Jean-Paul Dumoulin**. Le Bureau Gérard structure et préserve cette connaissance dans une documentation vivante, accessible à tous les membres de l'OCA.
+## Pourquoi ce changement ?
 
-## L'équipe : 6 agents spécialisés
+`BAVI_LEO` est désormais le point unique de convergence pour tous les bureaux virtuels :
 
-| Agent | Rôle |
-|-------|------|
-| **Gérard** — Orchestrateur | Coordonne le cycle documentaire complet |
-| **The Interviewer** — Ethnographe | Extrait la connaissance tacite des experts |
-| **The Astronomer-Physicist** — Astro-optique | Valide la physique et l'optique |
-| **The Hardware Specialist** — Hardware | Documente l'électronique et le câblage |
-| **The Firmware Expert** — Firmware | Analyse les systèmes embarqués |
-| **The Lead Technical Writer** — Rédacteur | Assemble le corpus final |
+| Bureau | Domaine | Lien |
+|--------|---------|------|
+| 🏛️ **Robert** | Conseil IT stratégique | [BAVI LEO](https://christophedanhier-hash.github.io/BAVI_LEO/) |
+| 💰 **Sophie** | Finance IT, business cases | [BAVI LEO](https://christophedanhier-hash.github.io/BAVI_LEO/) |
+| 🛡️ **Assurance Obligatoire** | Réglementation AO | [BAVI LEO](https://christophedanhier-hash.github.io/BAVI_LEO/) |
+| 📝 **Gérard** | Documentation technique T600 | [BAVI LEO](https://christophedanhier-hash.github.io/BAVI_LEO/) |
+| 🧭 **Sylvie** | Voyages camping-car | [BAVI LEO](https://christophedanhier-hash.github.io/BAVI_LEO/) |
 
-## Cycle documentaire
+## Ce qui change pour le Wiki OCA
 
-```
-Demande → Cadrage → Extraction → Dispatch → Croisement → Assemblage → Livraison
-```
-
-Chaque livrable suit une **traçabilité stricte** : toute donnée remonte à une source identifiable, et les lacunes sont explicitement marquées pour relance ultérieure.
+Ce wiki **conserve toute la documentation technique du T600** (technique, formation, sources). Seule la partie **Bureau Gérard** a migré vers BAVI LEO, où elle continue d'évoluer.
 
 ---
 
-*Documentation technique — production assistée par le Bureau Gérard*
+*Documentation OCA — mise à jour le 16 juin 2026*
