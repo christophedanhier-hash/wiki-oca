@@ -146,8 +146,8 @@
 
 #### Séquence d'initialisation et validation d'intégrité
 1. Connexion au **T600-NUC-TELE** → Vérifier allumage système, stabilité, température CPU OK
-2. Accès IP **192.168.1.237** → Commande ON → Actualiser → Vérifier cohérence timestamp d'allumage
-3. Accès IP **192.168.1.238** → Login Admin → Vérifier cohérence Output/Input (aucun relais bloqué, absence de retour fantôme)
+2. Accès IP **192.168.0.237** → Commande ON → Actualiser → Vérifier cohérence timestamp d'allumage
+3. Accès IP **192.168.0.238** → Login Admin → Vérifier cohérence Output/Input (aucun relais bloqué, absence de retour fantôme)
 4. Vérifier température dôme (DS18B20) pour anomalies thermiques
 
 #### Interverrouillage mécanique absolu avant mouvement
@@ -185,10 +185,10 @@
 - **Maia-4** : driver TB67H303HG, contrôle pas de surchauffe, quadrature correcte, cohérence vitesse/commande, port RJ12 absence faux contacts
 
 #### Procédure de mise en sécurité et extinction logicielle
-- **Niveau 1 (Mécanique)** : Fermer les cimiers → Vérifier fins de course, absence tension résiduelle sur moteurs
-- **Niveau 2 (Relais)** : IP 192.168.1.238 → Désactiver toutes les sorties → Vérifier cohérence stricte Output/Input
-- **Niveau 3 (Énergie)** : IP 192.168.1.237 → Commande OFF → Actualiser → Vérifier D0 (module IPX800 physiquement éteint)
-- **Niveau 4 (Cerveau informatique)** : [suite non détaillée]
+- **Niveau 1 (Mécanique)** : Fermer les cimiers + rebrancher câble batterie → Vérifier fins de course, absence tension résiduelle sur moteurs
+- **Niveau 2 (Cerveau informatique)** : Arrêter T600-NUC-TELE → Extinction complète du système
+- **Niveau 3 (Relais)** : IP 192.168.0.238 → Désactiver toutes les sorties → Vérifier cohérence stricte Output/Input
+- **Niveau 4 (Énergie)** : IP 192.168.0.237 → Commande OFF → Actualiser → Vérifier D0 (module IPX800 physiquement éteint)
 
 ### Composants matériels mentionnés
 | Composant | Rôle |
@@ -209,8 +209,8 @@
 | Adresse | Équipement |
 |---------|------------|
 | 192.168.4.201 | Énergie & Environnement (température DS18B20) |
-| 192.168.1.237 | Gestion alimentation IPX800 (commande ON/OFF) |
-| 192.168.1.238 | Gestion relais E/S (Login Admin requis) |
+| 192.168.0.237 | Gestion alimentation IPX800 (commande ON/OFF) |
+| 192.168.0.238 | Gestion relais E/S (Login Admin requis) |
 | (adresse variable) | T600-NUC-TELE (connexion locale ou AnyDesk) |
 
 ### Codes / Diagnostics
@@ -263,7 +263,7 @@
 **Étape 1 — Préparation physique**
 1. Enlever le câble de charge des cimiers (batterie toujours en charge)
 2. Enlever la bâche du télescope
-3. Si pilotage cimiers via IPX800 : mettre tension sur coffret cimier via wifi (192.168.1.236)
+3. Si pilotage cimiers via IPX800 : mettre tension sur coffret cimier via wifi (192.168.0.236)
 
 **Étape 2 — Connexion au PC T600-NUC**
 - Local (1er étage) : connexion directe (psw: `forets`)
@@ -310,10 +310,10 @@
 
 **Étape 2 — Connexion sur PC T600-NUC**
 1. AnyDesk sur T600-NUC (513 471 809, psw: `T6002024$#@`)
-2. Edge → 192.168.1.238 → Décocher les boutons allumés
+2. Edge → 192.168.0.238 → Décocher les boutons allumés
 
 **Étape 3 — Extinction IPX800**
-1. Edge → 192.168.1.237 → Clic OFF → Actualiser
+1. Edge → 192.168.0.237 → Clic OFF → Actualiser
 2. Confirmation : "Tout est éteint"
 
 ### Composants matériels mentionnés
@@ -348,9 +348,9 @@
 | Mot de passe myfoscam.com | T6002021$ |
 | SSID wifi dôme | wireless2.4G_A84620 |
 | Mot de passe wifi | Admin2021$ |
-| Adresse IP IPX800 commande | 192.168.1.237 |
-| Adresse IP IPX800 relais | 192.168.1.238 |
-| Adresse IP cimiers (wifi) | 192.168.1.236 |
+| Adresse IP IPX800 commande | 192.168.0.237 |
+| Adresse IP IPX800 relais | 192.168.0.238 |
+| Adresse IP cimiers (wifi) | 192.168.0.236 |
 | Mot de passe local 1er étage | forets |
 
 ### Lacunes identifiées
@@ -467,9 +467,9 @@
 ### Cartographie réseau complète du T600
 | Adresse IP | Équipement | Fonction |
 |------------|------------|----------|
-| 192.168.1.236 | Cimiers (wifi) | Commande ouverture/fermeture |
-| 192.168.1.237 | IPX800 — Alimentation | Commande ON/OFF globale |
-| 192.168.1.238 | IPX800 — Relais E/S | Gestion des sorties (login: Admin / Oc@2018) |
+| 192.168.0.236 | Cimiers (wifi) | Commande ouverture/fermeture |
+| 192.168.0.237 | IPX800 — Alimentation | Commande ON/OFF globale |
+| 192.168.0.238 | IPX800 — Relais E/S | Gestion des sorties (login: Admin / Oc@2018) |
 | 192.168.4.201 | Énergie & Environnement | Capteur température DS18B20 |
 | (variable) | T600-NUC-TELE | PC de pilotage télescope (AnyDesk: 1 041 426 244) |
 | (variable) | T600-NUC | PC 1er étage (AnyDesk: 513 471 809) |
