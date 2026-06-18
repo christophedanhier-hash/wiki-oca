@@ -23,7 +23,6 @@ Le **T600** est un télescope automatisé de type Newton sur monture équatorial
 |---------|-------------|
 | [🔭 Projet T600](t600/index.md) | Documentation technique, formation, sources |
 | [➡️ Bureau Gérard (BAVI LEO)](bureau-gerard/index.md) | Déplacé vers le hub BAVI LEO |
-| [🧭 Wiki Voyages](https://christophedanhier-hash.github.io/voyages-wiki/) | Roadbooks camping-car — Bureau Sylvie |
 
 ---
 
