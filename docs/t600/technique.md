@@ -53,60 +53,80 @@ Le système a été conçu et réalisé par **Christian Wanlin** et **Jean-Paul 
 
 ### 2.1 Schéma blocs textuel — Vue d'ensemble
 
+```mermaid
+flowchart TD
+    %% Styles
+    classDef main fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#0d47a1
+    classDef sub fill:#e8f5f9,stroke:#0288d1,stroke-width:3px
+    classDef alt fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+
+    subgraph Reseau["RÉSEAU GLOBAL T600"]
+        SW["Switch wifi dôme<br/>SSID: wireless2.4G_A84620"]:::sub
+        C236["192.168.0.236 → Commande cimiers (wifi)"]:::main
+        C237["192.168.0.237 → IPX800 Alimentation (ON/OFF)"]:::main
+        C238["192.168.0.238 → IPX800 Relais E/S<br/>(Login: Admin / Oc@2018)"]:::main
+        C4201["192.168.4.201 → Énergie & Environnement<br/>(Wemos D1 Mini + DS18B20)"]:::main
+        NUCT["T600-NUC-TELE → PC pilotage télescope<br/>(AnyDesk: 1 041 426 244)"]:::main
+        NUC["T600-NUC → PC 1er étage<br/>alimente IPX800<br/>(AnyDesk: 513 471 809)"]:::main
+        SW --> C236 & C237 & C238 & C4201 & NUCT & NUC
+    end
+
+    linkStyle default stroke-width:2px,fill:none
 ```
-┌──────────────────────────────────────────────────────────────────────────────────┐
-│                            RÉSEAU GLOBAL T600                                    │
-│  SSID: wireless2.4G_A84620 — Switch wifi dôme [A CONFIRMER : modèle switch]      │
-│   ├── 192.168.0.236  → Commande cimiers (wifi)                                   │
-│   ├── 192.168.0.237  → IPX800 Alimentation (ON/OFF)                              │
-│   ├── 192.168.0.238  → IPX800 Relais E/S (Login: Admin / Oc@2018)                │
-│   ├── 192.168.4.201  → Énergie & Environnement (Wemos D1 Mini + DS18B20)         │
-│   ├── T600-NUC-TELE  → PC pilotage télescope (AnyDesk: 1 041 426 244)            │
-│   └── T600-NUC       → PC 1er étage, alimente IPX800 (AnyDesk: 513 471 809)      │
-└──────────────────────────────────────────────────────────────────────────────────┘
 
-┌──────────────────────────────────────────────────────────────────────────────────┐
-│                          ALIMENTATION & DISTRIBUTION D'ÉNERGIE                   │
-├──────────────────────────────────────────────────────────────────────────────────┤
-│                                                                                   │
-│  [Réseau EDF] ──► Variateur de fréquence (f=24.0 Hz) [A CONFIRMER : marque]      │
-│                       └──► Moteur réducteur rotation dôme [A CONFIRMER : modèle]  │
-│                                                                                   │
-│  [Pilier 20V] ──► Sortie IPX800 #2                                                │
-│      ├──► Alimentation Télescope 12V                                              │
-│      └──► Alcyone-5 [12V-24V → régule 12V(drivers) + 9V(Arduino Uno)]            │
-│               └──► Electra-5 [régule 5V + 3.3V]                                   │
-│                       └──► Maia-4 [TB67H303HC, max 24V, 2.7A]                     │
-│                                                                                   │
-│  [PC T600-NUC 1er étage] ──► Alimentation IPX800 (Sortie #3)                      │
-│                                                                                   │
-│  [Batterie cimiers] ──► toujours en charge [A CONFIRMER : chimie, tension, Ah]   │
-│      └──► Arduino Mega + NRF24L01 + Relais moteurs cimiers                       │
-│                                                                                   │
-│  [Watchdog] Wemos D1 Mini (ESP8266) + DS18B20                                     │
-│      └──► Surveillance température dôme + supervision watchdog                    │
-│                                                                                   │
-└──────────────────────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    %% Styles
+    classDef main fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#0d47a1
+    classDef sub fill:#e8f5f9,stroke:#0288d1,stroke-width:3px
 
-┌──────────────────────────────────────────────────────────────────────────────────┐
-│                             AUTOMATE CENTRAL — IPX800                            │
-├──────────────────────────────────────────────────────────────────────────────────┤
-│  8 sorties relais, entrées analogiques et digitales                               │
-│  Version : non spécifiée (V4 ou V5 probable) [A CONFIRMER]                        │
-│                                                                                   │
-│  Sortie #1 : Rotation Coupole                                                      │
-│  Sortie #2 : Pilier 20V & Télescope 12V                                           │
-│  Sortie #3 : PC NUC T600                                                           │
-│  Sortie #4 : Fermeture Cimiers                                                     │
-│  Sortie #5 : Fermeture Cimiers URGENCE                                             │
-│  Sortie #6 : Ouverture Cimiers                                                     │
-│  Sortie #7 : Non documentée [LACUNE]                                               │
-│  Sortie #8 : Non documentée [LACUNE]                                               │
-│                                                                                   │
-│  Commande ON/OFF globale : 192.168.0.237                                           │
-│  Commande relais E/S     : 192.168.0.238                                           │
-│  Relais d'alimentation   : Relais Keyes_SRly                                      │
-└──────────────────────────────────────────────────────────────────────────────────┘
+    subgraph Alim["ALIMENTATION & DISTRIBUTION D'ÉNERGIE"]
+        EDF["Réseau EDF"]:::sub
+        Variateur["Variateur de fréquence<br/>(f=24.0 Hz)"]:::main
+        MoteurRed["Moteur réducteur<br/>rotation dôme"]:::main
+        Pilier["Pilier 20V → Sortie IPX800 #2"]:::main
+        AlimTele["Alimentation Télescope 12V"]:::main
+        Alcyone["Alcyone-5<br/>12V-24V → 12V(drivers) + 9V(Arduino Uno)"]:::main
+        Electra["Electra-5<br/>régule 5V + 3.3V"]:::main
+        Maia["Maia-4<br/>TB67H303HC, max 24V, 2.7A"]:::main
+        NUCAlim["PC T600-NUC 1er étage →<br/>Alimentation IPX800 (Sortie #3)"]:::main
+        Batt["Batterie cimiers<br/>toujours en charge"]:::main
+        ArduCim["Arduino Mega + NRF24L01<br/>+ Relais moteurs cimiers"]:::main
+        Watchdog["Watchdog<br/>Wemos D1 Mini (ESP8266) + DS18B20"]:::main
+        SurvTemp["Surveillance température dôme<br/>+ supervision watchdog"]:::main
+
+        EDF --> Variateur --> MoteurRed
+        Pilier --> AlimTele
+        Pilier --> Alcyone --> Electra --> Maia
+        NUCAlim --> Batt --> ArduCim
+        Watchdog --> SurvTemp
+    end
+
+    linkStyle default stroke-width:2px,fill:none
+```
+
+```mermaid
+flowchart TD
+    %% Styles
+    classDef main fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#0d47a1
+    classDef sub fill:#e8f5f9,stroke:#0288d1,stroke-width:3px
+    classDef lac fill:#fff3e0,stroke:#e65100,stroke-width:2px
+
+    subgraph IPX["AUTOMATE CENTRAL — IPX800"]
+        Info["8 sorties relais<br/>entrées analogiques et digitales<br/>Version: V4 ou V5 probable"]:::sub
+        S1["Sortie #1 : Rotation Coupole"]:::main
+        S2["Sortie #2 : Pilier 20V & Télescope 12V"]:::main
+        S3["Sortie #3 : PC NUC T600"]:::main
+        S4["Sortie #4 : Fermeture Cimiers"]:::main
+        S5["Sortie #5 : Fermeture Cimiers URGENCE"]:::main
+        S6["Sortie #6 : Ouverture Cimiers"]:::main
+        S7["Sortie #7 : Non documentée [LACUNE]"]:::lac
+        S8["Sortie #8 : Non documentée [LACUNE]"]:::lac
+        Cmd["Commande ON/OFF globale: 192.168.0.237<br/>Commande relais E/S: 192.168.0.238<br/>Relais d'alimentation: Keyes_SRly"]:::sub
+    end
+
+    linkStyle default stroke-width:2px,fill:none
+```
 
 > **Sémantique IPX800 Output / Input :**  
 > - **Output** = ORDRE envoyé par l'IPX800 (« mets sous tension »)  
@@ -114,71 +134,113 @@ Le système a été conçu et réalisé par **Christian Wanlin** et **Jean-Paul 
 > - Output ON + Input ON = ligne saine  
 > - Output ON + Input OFF = défaut aval (fusible, câble, contacteur) → STOP + diagnostic  
 
-┌──────────────────────────────────────────────────────────────────────────────────┐
-│                      CHAÎNE CIMIERS (Volets du dôme)                              │
-├──────────────────────┬───────────────────────────────────────────────────────────┤
-│  PARTIE FIXE          │ ÉMETTEUR                                                   │
-│                       │ IPX800 ──► Relais Keyes ──► Arduino Uno                    │
-│                       │                           └──► NRF24L01 TX                 │
-│                       │                                                           │
-│  PARTIE TOURNANTE     │ RÉCEPTEUR (sur batterie cimiers)                          │
-│                       │ Arduino Mega + NRF24L01 RX                                 │
-│                       │     ├──► Relais moteurs → Moteurs cimiers (x2…4?)         │
-│                       │     ├──► Capteur ACS712 (mesure courant moteur) [CALIBRE ?]│
-│                       │     ├──► Capteurs fin de course (GH, GB, DY, DB)           │
-│                       │     ├──► Limiteur de courant [A CONFIRMER : type]          │
-│                       │     └──► Détecteur de pluie [A CONFIRMER : type]           │
-└───────────────────────┴───────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    %% Styles
+    classDef main fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#0d47a1
+    classDef sub fill:#e8f5f9,stroke:#0288d1,stroke-width:3px
+    classDef alt fill:#e8f5e9,stroke:#388e3c,stroke-width:2px
+
+    subgraph Cimiers["CHAÎNE CIMIERS (Volets du dôme)"]
+        subgraph PartieFixe["PARTIE FIXE"]
+            Emetteur["ÉMETTEUR"]:::sub
+            IPX800_CM["IPX800"]:::main
+            RelaisKeyes["Relais Keyes"]:::main
+            ArduinoUnoTX["Arduino Uno"]:::main
+            NRF24TX["NRF24L01 TX"]:::main
+            IPX800_CM --> RelaisKeyes --> ArduinoUnoTX --> NRF24TX
+        end
+        subgraph PartieTournante["PARTIE TOURNANTE"]
+            Recepteur["RÉCEPTEUR (sur batterie cimiers)"]:::sub
+            ArduinoMegaRX["Arduino Mega + NRF24L01 RX"]:::main
+            RelaisMoteurs["Relais moteurs → Moteurs cimiers (x2…4?)"]:::alt
+            ACS712["Capteur ACS712 (mesure courant moteur) [CALIBRE ?]"]:::alt
+            FinCourse["Capteurs fin de course (GH, GB, DY, DB)"]:::alt
+            Limiteur["Limiteur de courant [A CONFIRMER : type]"]:::alt
+            DetectPluie["Détecteur de pluie [A CONFIRMER : type]"]:::alt
+            ArduinoMegaRX --> RelaisMoteurs & ACS712 & FinCourse & Limiteur & DetectPluie
+        end
+        NRF24TX -.->|NRF24 2.4GHz RF| ArduinoMegaRX
+    end
+
+    linkStyle default stroke-width:2px,fill:none
+```
 
 > **Pilotage manuel des cimiers :** Les interrupteurs physiques à côté du boîtier permettent l'ouverture et la fermeture manuelle en secours du pilotage Wi-Fi.
 
-┌──────────────────────────────────────────────────────────────────────────────────┐
-│                     CHAÎNE ROTATION DÔME                                          │
-├──────────────────────────────────────────────────────────────────────────────────┤
-│                                                                                   │
-│  PC T600-NUC-TELE                                                                 │
-│   └──► USB ──► Interface Velleman PVM110N (timer interval: 60ms)                  │
-│                  └──► Variateur de fréquence (f=24.0 Hz) [A CONFIRMER : modèle]   │
-│                          └──► Moteur réducteur + Switch Home [A CONFIRMER : type] │
-│                                                                                   │
-│  RETOUR POSITION :                                                                 │
-│   Encodeur Gray Code (Grayhill 654321) — roue 241mm, 16 trous                     │
-│       └──► LesveDomeNet (lecture encodeur)                                        │
-│       └──► Switch Home (position zéro = 310) [A CONFIRMER : unité]               │
-│                                                                                   │
-└──────────────────────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    %% Styles
+    classDef main fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#0d47a1
+    classDef sub fill:#e8f5f9,stroke:#0288d1,stroke-width:3px
+    classDef alt fill:#fff3e0,stroke:#e65100,stroke-width:2px
 
-┌──────────────────────────────────────────────────────────────────────────────────┐
-│                    CHAÎNE TÉLESCOPE / MONTURE (GEM)                               │
-├──────────────────────────────────────────────────────────────────────────────────┤
-│                                                                                   │
-│  PC T600-NUC-TELE ──► ASCOM/NINA                                                  │
-│   └──► Carte Pléiades : Alcyone-5 (Shield, alim principale)                       │
-│           └──► Electra-5 (Motherboard, régul 5V/3.3V, port ST-4)                  │
-│                   └──► Maia-4 (Driver TB67H303HC, encodeur quadrature)             │
-│                            └──► Moteurs pas-à-pas axes AD/DEC                     │
-│                                                                                   │
-│  ÉLÉMENTS MANQUANTS CONFIRMÉS :                                                    │
-│   ❌ Capteurs fin de course AD/DEC — absents                                      │
-│   ❌ Autoguideur — non documenté ([LACUNE CRITIQUE])                              │
-│                                                                                   │
-└──────────────────────────────────────────────────────────────────────────────────┘
+    subgraph Rotation["CHAÎNE ROTATION DÔME"]
+        PCTELE["PC T600-NUC-TELE"]:::main
+        Velleman["Interface Velleman PVM110N<br/>(timer interval: 60ms)"]:::main
+        VariateurRot["Variateur de fréquence<br/>(f=24.0 Hz)"]:::main
+        MoteurRedRot["Moteur réducteur + Switch Home"]:::alt
+        PCTELE -->|USB| Velleman -->|Analogique| VariateurRot --> MoteurRedRot
 
-┌──────────────────────────────────────────────────────────────────────────────────┐
-│                       SUPERVISION & SÉCURITÉ                                      │
-├──────────────────────────────────────────────────────────────────────────────────┤
-│                                                                                   │
-│  [Visuelle]   Caméra Foscam FI9831P-T600 (latence < 1s, Ethernet filaire)         │
-│  [Distante]   AnyDesk sur les 2 PC NUC                                            │
-│  [Watchdog]   Wemos D1 Mini + DS18B20 → surveillance thermique (192.168.4.201)   │
-│  [Diodes]     Visualisation arrêts d'urgence déplacement télescope                │
-│                                                                                   │
-│  DÉFAUTS DE SÉCURITÉ CONFIRMÉS :                                                  │
-│   ❌ Parafoudre Type 2 — absent ([LACUNE])                                        │
-│   ❌ Capteurs fin de course AD/DEC — absents                                      │
-│   ❌ Protection différentielle 30mA — non documentée                              │
-│                                                                                   │
-└──────────────────────────────────────────────────────────────────────────────────┘
+        subgraph Retour["RETOUR POSITION"]
+            Encodeur["Encodeur Gray Code (Grayhill 654321)<br/>roue 241mm, 16 trous"]:::main
+            LesveDome["LesveDomeNet (lecture encodeur)"]:::main
+            SwitchHome["Switch Home (position zéro = 310)"]:::alt
+            Encodeur --> LesveDome
+            Encodeur --> SwitchHome
+        end
+        MoteurRedRot -.->|Retour position| Encodeur
+    end
+
+    linkStyle default stroke-width:2px,fill:none
+```
+
+```mermaid
+flowchart TD
+    %% Styles
+    classDef main fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#0d47a1
+    classDef sub fill:#e8f5f9,stroke:#0288d1,stroke-width:3px
+    classDef lac fill:#fff3e0,stroke:#e65100,stroke-width:2px
+
+    subgraph Monture["CHAÎNE TÉLESCOPE / MONTURE (GEM)"]
+        PCTELEM["PC T600-NUC-TELE"]:::main
+        ASCOM["ASCOM/NINA"]:::main
+        AlcyoneM["Alcyone-5 (Shield, alim principale)"]:::main
+        ElectraM["Electra-5 (Motherboard, régul 5V/3.3V, port ST-4)"]:::main
+        MaiaM["Maia-4 (Driver TB67H303HC, encodeur quadrature)"]:::main
+        Moteurs["Moteurs pas-à-pas axes AD/DEC"]:::main
+        PCTELEM --> ASCOM --> AlcyoneM --> ElectraM --> MaiaM --> Moteurs
+
+        subgraph Manquants["ÉLÉMENTS MANQUANTS CONFIRMÉS"]
+            L1["❌ Capteurs fin de course AD/DEC — absents"]:::lac
+            L2["❌ Autoguideur — non documenté ([LACUNE CRITIQUE])"]:::lac
+        end
+    end
+
+    linkStyle default stroke-width:2px,fill:none
+```
+
+```mermaid
+flowchart TD
+    %% Styles
+    classDef main fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#0d47a1
+    classDef sub fill:#e8f5f9,stroke:#0288d1,stroke-width:3px
+    classDef lac fill:#fff3e0,stroke:#e65100,stroke-width:2px
+
+    subgraph Supervision["SUPERVISION & SÉCURITÉ"]
+        Visuelle["[Visuelle] Caméra Foscam FI9831P-T600<br/>(latence < 1s, Ethernet filaire)"]:::main
+        Distante["[Distante] AnyDesk sur les 2 PC NUC"]:::main
+        WatchdogSup["[Watchdog] Wemos D1 Mini + DS18B20<br/>→ surveillance thermique (192.168.4.201)"]:::main
+        Diodes["[Diodes] Visualisation arrêts d'urgence<br/>déplacement télescope"]:::main
+
+        subgraph Defauts["DÉFAUTS DE SÉCURITÉ CONFIRMÉS"]
+            D1["❌ Parafoudre Type 2 — absent ([LACUNE])"]:::lac
+            D2["❌ Capteurs fin de course AD/DEC — absents"]:::lac
+            D3["❌ Protection différentielle 30mA — non documentée"]:::lac
+        end
+    end
+
+    linkStyle default stroke-width:2px,fill:none
 ```
 
 ### 2.2 Cartographie réseau
@@ -428,15 +490,33 @@ Le port ST-4 de la carte Electra-5 (broché sur embase RJ12 à 6 broches) permet
 
 ### 5.2 Logique de contrôle — Cimiers (inférée)
 
-```
-Chaîne de commande :
-IPX800 (S4/S5/S6) → Série UART [?] → Arduino Uno → SPI → NRF24L01 TX
-                                                          │ 2.4 GHz RF
-Arduino Mega ← SPI ← NRF24L01 RX ←┘
-    → GPIO → Relais moteurs (OG/FG/OD/FD) [A CONFIRMER : 2 ou 4 moteurs]
-    → Analogique → ACS712 (courant moteur)
-    → GPIO → Capteurs GH, GB, DY, DB (fins de course)
-    → GPIO → Détecteur de pluie
+```mermaid
+flowchart LR
+    %% Styles
+    classDef main fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#0d47a1
+    classDef sub fill:#e8f5f9,stroke:#0288d1,stroke-width:3px
+
+    IPXC["IPX800 (S4/S5/S6)"]:::main
+    UART["Série UART [?]"]:::main
+    Uno["Arduino Uno"]:::main
+    SPI1["SPI"]:::main
+    NRF_TX["NRF24L01 TX"]:::main
+    RF["2.4 GHz RF"]:::sub
+    NRF_RX["NRF24L01 RX"]:::main
+    Mega["Arduino Mega"]:::main
+    RelaisM["Relais moteurs (OG/FG/OD/FD)"]:::main
+    ACS["ACS712 (courant moteur)"]:::main
+    Capteurs["Capteurs GH, GB, DY, DB"]:::main
+    Pluie["Détecteur de pluie"]:::main
+
+    IPXC -->|Série| UART --> Uno -->|SPI| NRF_TX -.->|RF| NRF_RX
+    NRF_RX -->|SPI| Mega
+    Mega -->|GPIO| RelaisM
+    Mega -->|Analogique| ACS
+    Mega -->|GPIO| Capteurs
+    Mega -->|GPIO| Pluie
+
+    linkStyle default stroke-width:2px,fill:none
 ```
 
 **Logique inférée :**
@@ -455,10 +535,26 @@ Vérification courant moteur via **ACS712** sur le **port 5482**.
 
 ### 5.3 Logique de contrôle — Rotation dôme (inférée)
 
-```
-PC (LesveDomeNet) → USB → Velleman PVM110N → Analogique → Variateur (24.0 Hz) → Moteur réducteur
-                                                                                       │
-Encodeur Grayhill 654321 (Gray Code, 16 trous, roue 241mm) ← Switch Home (pos. 310) ←┘
+```mermaid
+flowchart LR
+    %% Styles
+    classDef main fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#0d47a1
+    classDef alt fill:#fff3e0,stroke:#e65100,stroke-width:2px
+
+    PC["PC (LesveDomeNet)"]:::main
+    USB["USB"]:::main
+    Velleman["Velleman PVM110N"]:::main
+    Analog["Analogique"]:::main
+    Variateur["Variateur (24.0 Hz)"]:::main
+    Moteur["Moteur réducteur"]:::main
+    Encoder["Encodeur Grayhill 654321<br/>(Gray Code, 16 trous, roue 241mm)"]:::alt
+    SwitchHome["Switch Home (pos. 310)"]:::alt
+
+    PC -->|USB| USB --> Velleman -->|Analogique| Analog --> Variateur --> Moteur
+    Moteur -.->|Retour position| Encoder -.->|Gray Code| PC
+    Moteur -.->|Position zéro| SwitchHome -.-> PC
+
+    linkStyle default stroke-width:2px,fill:none
 ```
 
 **Logique inférée :**

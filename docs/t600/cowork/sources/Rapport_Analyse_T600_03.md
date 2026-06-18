@@ -45,20 +45,32 @@
 
 ### 2.2 Architecture de distribution électrique
 
-```
-[PC NUC-T600] — 1er étage
-     │
-     ├── Alimente l'IPX800 (via connexion internet)
-     │
-[IPX800] — 192.168.1.237 / 238 — Contrôleur relais
-     │
-     ├── [PC NUC-T600-TELE] — Pilote le télescope
-     ├── [Cartes Alcyone-5] — Moteur AD
-     ├── [Cartes MAIA-4] — Moteur DEC
-     ├── [Cartes ELECTRA-5] — Auxiliaire
-     ├── [Cartes cimiers] — Ouverture/fermeture (sur batterie)
-     ├── [Variateur fréquence + Encodeur] — Rotation dôme
-     └── [Switch wifi] — Caméra Foscam, réseau local
+```mermaid
+flowchart TD
+    %% Styles
+    classDef main fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#0d47a1
+    classDef sub fill:#e8f5f9,stroke:#0288d1,stroke-width:3px
+
+    NUC["[PC NUC-T600] — 1er étage"]:::main
+    IPX800_3["[IPX800] — 192.168.1.237 / 238<br/>Contrôleur relais"]:::main
+    NUCTele["[PC NUC-T600-TELE] — Pilote le télescope"]:::main
+    Alcyone3["[Cartes Alcyone-5] — Moteur AD"]:::main
+    MAIA3["[Cartes MAIA-4] — Moteur DEC"]:::main
+    ELECTRA3["[Cartes ELECTRA-5] — Auxiliaire"]:::main
+    Cimiers3["[Cartes cimiers] — Ouverture/fermeture<br/>(sur batterie)"]:::main
+    Variateur3["[Variateur fréquence + Encodeur]<br/>— Rotation dôme"]:::main
+    Switch3["[Switch wifi] — Caméra Foscam, réseau local"]:::main
+
+    NUC -->|Alimente l'IPX800 (via connexion internet)| IPX800_3
+    IPX800_3 --> NUCTele
+    IPX800_3 --> Alcyone3
+    IPX800_3 --> MAIA3
+    IPX800_3 --> ELECTRA3
+    IPX800_3 --> Cimiers3
+    IPX800_3 --> Variateur3
+    IPX800_3 --> Switch3
+
+    linkStyle default stroke-width:2px,fill:none
 ```
 
 ### 2.3 Équipe d'analyse mobilisée
@@ -122,16 +134,28 @@
 
 #### Architecture de câblage préconisée (boucle fail-safe)
 
-```
-+24VDC ALIM                         ALIM 0V
-   │                                    │
-   ├──[BP URGENCE NC]───[Capteur AD+ NC]───[Capteur AD- NC]─── ...
-   │                                        │
-   └──[R pull-up 10kΩ]─────────────────────┼──── EN1 (Alcyone-5)
-                                           │
-                                    [Diode TVS P6KE24A]
-                                           │
-                                          0V
+```mermaid
+flowchart LR
+    %% Styles
+    classDef main fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#0d47a1
+    classDef sub fill:#e8f5f9,stroke:#0288d1,stroke-width:3px
+
+    ALIM["+24VDC ALIM"]:::sub
+    GND["ALIM 0V"]:::sub
+    BP["BP URGENCE NC"]:::main
+    CAP_AD_P["Capteur AD+ NC"]:::main
+    CAP_AD_M["Capteur AD- NC"]:::main
+    PULLUP["R pull-up 10kΩ"]:::main
+    EN1["EN1 (Alcyone-5)"]:::main
+    TVS["Diode TVS P6KE24A"]:::main
+
+    ALIM --> BP
+    BP --> CAP_AD_P --> CAP_AD_M
+    ALIM --> PULLUP --> EN1
+    CAP_AD_M -->|Contact NC série| EN1
+    EN1 --> TVS --> GND
+
+    linkStyle default stroke-width:2px,fill:none
 ```
 
 **Logique de sécurité fail-safe :**
@@ -144,12 +168,25 @@
 
 #### Protection des entrées (par canal)
 
-```
-[Capteur NC] ──[R série 470Ω 1/2W]──┬──[Diode TVS P6KE24A]── 0V
-                                     │
-                                     ├──[Condensateur 100nF]── 0V
-                                     │
-                                     └── EN1 (Alcyone-5)
+```mermaid
+flowchart LR
+    %% Styles
+    classDef main fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#0d47a1
+    classDef sub fill:#e8f5f9,stroke:#0288d1,stroke-width:3px
+
+    Capteur["Capteur NC"]:::main
+    Rserie["R série 470Ω 1/2W"]:::main
+    TVS2["Diode TVS P6KE24A"]:::main
+    GND2["0V"]:::sub
+    Cap["Condensateur 100nF"]:::main
+    EN1_2["EN1 (Alcyone-5)"]:::main
+
+    Capteur --> Rserie
+    Rserie --> TVS2 --> GND2
+    Rserie --> Cap --> GND2
+    Rserie --> EN1_2
+
+    linkStyle default stroke-width:2px,fill:none
 ```
 
 #### Intégration IPX800
@@ -246,24 +283,31 @@ void loop() {
 
 #### Procédure de Homing après déclenchement
 
-```
-[Fin de course détecté par ISR]
-        │
-        v
-[Arrêt moteur immédiat (coupure ENABLE)]
-        │
-        v
-[Attente commande :Rh# de NINA]
-        │
-        v
-[Commande :Rh# reçue ?]
-   ├── OUI → Sortie douce de butée (500ms sens inverse)
-   │         ├── Validation : capteur revenu à l'état non déclenché
-   │         ├── Déplacement vers position de sécurité (+1000 pas)
-   │         └── Réponse :Rh0# (succès)
-   │
-   └── NON → Télescope immobilisé, alerte maintenue
-             → Réponse :Gm1#/2# à chaque interrogation
+```mermaid
+flowchart TD
+    %% Styles
+    classDef main fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#0d47a1
+    classDef sub fill:#e8f5f9,stroke:#0288d1,stroke-width:3px
+    classDef alt fill:#e8f5e9,stroke:#388e3c,stroke-width:2px
+
+    ISR["Fin de course détecté par ISR"]:::main
+    Arret["Arrêt moteur immédiat (coupure ENABLE)"]:::main
+    Attente["Attente commande :Rh# de NINA"]:::main
+    Decision{"Commande :Rh# reçue ?"}
+    OUI["OUI"]:::alt
+    NON["NON"]:::alt
+    SortieButee["Sortie douce de butée (500ms sens inverse)"]:::main
+    Validation["Validation : capteur revenu à l'état non déclenché"]:::main
+    Deplacement["Déplacement vers position de sécurité (+1000 pas)"]:::main
+    Succes["Réponse :Rh0# (succès)"]:::main
+    Immobilise["Télescope immobilisé, alerte maintenue"]:::main
+    Reponse["Réponse :Gm1#/2# à chaque interrogation"]:::main
+
+    ISR --> Arret --> Attente --> Decision
+    Decision -->|OUI| OUI --> SortieButee --> Validation --> Deplacement --> Succes
+    Decision -->|NON| NON --> Immobilise --> Reponse
+
+    linkStyle default stroke-width:2px,fill:none
 ```
 
 #### Intégration NINA
@@ -317,18 +361,27 @@ void loop() {
 
 #### Architecture typique d'autoguidage avec NINA
 
-```
-┌─────────┐    socket TCP:4400    ┌──────────┐
-│  NINA   │◄─────────────────────►│   PHD2   │
-│ (Driver │                        │ (Guidage)│
-│  ASCOM) │                        └────┬─────┘
-└────┬────┘                              │
-     │ ASCOM PulseGuide                   │ ST4 (TTL)
-     │ ou CommandString                   │
-     ▼                                   ▼
-┌────────────────────────────────────────────┐
-│         Monture T600 (Cartes Alcyone/...)   │
-└────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    %% Styles
+    classDef main fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#0d47a1
+    classDef sub fill:#e8f5f9,stroke:#0288d1,stroke-width:3px
+
+    NINA["NINA<br/>(Driver ASCOM)"]:::main
+    Socket["socket TCP:4400"]:::main
+    PHD2["PHD2<br/>(Guidage)"]:::main
+    PulseGuide["ASCOM PulseGuide<br/>ou CommandString"]:::main
+    ST4["ST4 (TTL)"]:::main
+    MontureT600["Monture T600<br/>(Cartes Alcyone/...)"]:::main
+
+    NINA <-->|socket TCP:4400| Socket
+    Socket <--> PHD2
+    NINA -->|ASCOM PulseGuide<br/>ou CommandString| PulseGuide
+    PHD2 -->|ST4 (TTL)| ST4
+    PulseGuide --> MontureT600
+    ST4 --> MontureT600
+
+    linkStyle default stroke-width:2px,fill:none
 ```
 
 #### Comparaison des protocoles
@@ -436,45 +489,35 @@ void IRAM_ATTR onGuideTimeout() {
 
 #### Schéma de protection global préconisé
 
-```
-                     RÉSEAU EDF 230V AC
-                            │
-              ┌─────────────────────────────┐
-              │  PARAFOUDRE TYPE 2          │
-              │  In ≥ 20kA  —  Up ≤ 1.5kV   │
-              │  Legrand 04633 / Citel LED20 │
-              └─────────────┬───────────────┘
-                            │
-              ┌─────────────────────────────┐
-              │  DISJONCTEUR GÉNÉRAL 20A    │
-              └─────────────┬───────────────┘
-                            │
-          ┌─────────────────┼─────────────────┐
-          │                 │                  │
-   ┌──────┴──────┐  ┌──────┴──────┐   ┌───────┴───────┐
-   │ PRISE TYPE 3│  │ PRISE TYPE 3│   │ PRISE TYPE 3  │
-   │ + ONDULEUR  │  │ + ONDULEUR  │   │   IPX800      │
-   │ 1000VA      │  │ 1000VA      │   │               │
-   │ PC NUC-T600 │  │PC NUC-T600- │   │               │
-   │             │  │   TELE      │   │               │
-   └─────────────┘  └─────────────┘   └───────┬───────┘
-                                              │
-                     ┌────────────────────────┼────────────┐
-                     │                        │             │
-              ┌──────┴──────┐          ┌──────┴──────┐  ┌──┴──────────┐
-              │ PARAFOUDRE  │          │ PARAFOUDRE  │  │  FILTRE +   │
-              │ LIGNE 24VDC │          │   RJ45 +    │  │  PARAFOUDRE │
-              │ Citel PD-24 │          │ PoE Citel   │  │  Schaffner  │
-              │ Cartes      │          │ Switch wifi │  │  Variateur  │
-              │ Alcyone/... │          │ + Caméra    │  │  fréquence  │
-              └─────────────┘          └─────────────┘  └─────────────┘
-                                              │
-                                     ┌────────┴────────┐
-                                     │ CÂBLES CIMIERS  │
-                                     │ PARAFOUDRE 24V  │
-                                     └─────────────────┘
-                     
-                TOUTES LES TERRES → [PRISE DE TERRE < 10 Ω]
+```mermaid
+flowchart TD
+    %% Styles
+    classDef main fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#0d47a1
+    classDef sub fill:#e8f5f9,stroke:#0288d1,stroke-width:3px
+    classDef alt fill:#fff3e0,stroke:#e65100,stroke-width:2px
+
+    EDF["RÉSEAU EDF 230V AC"]:::sub
+    Para2["PARAFOUDRE TYPE 2<br/>In ≥ 20kA — Up ≤ 1.5kV<br/>Legrand 04633 / Citel LED20"]:::main
+    Disj["DISJONCTEUR GÉNÉRAL 20A"]:::main
+    Prise1["PRISE TYPE 3<br/>+ ONDULEUR 1000VA<br/>PC NUC-T600"]:::alt
+    Prise2["PRISE TYPE 3<br/>+ ONDULEUR 1000VA<br/>PC NUC-T600-TELE"]:::alt
+    Prise3["PRISE TYPE 3<br/>IPX800"]:::alt
+    Para24V["PARAFOUDRE LIGNE 24VDC<br/>Citel PD-24<br/>Cartes Alcyone/..."]:::main
+    ParaRJ45["PARAFOUDRE RJ45 + PoE<br/>Citel<br/>Switch wifi + Caméra"]:::main
+    Filtre["FILTRE + PARAFOUDRE<br/>Schaffner<br/>Variateur fréquence"]:::main
+    ParaCimiers["CÂBLES CIMIERS<br/>PARAFOUDRE 24V"]:::main
+    Terre["TOUTES LES TERRES → [PRISE DE TERRE < 10 Ω]"]:::sub
+
+    EDF --> Para2 --> Disj
+    Disj --> Prise1
+    Disj --> Prise2
+    Disj --> Prise3
+    Prise3 --> Para24V
+    Para24V --> ParaRJ45
+    Para24V --> Filtre
+    Para24V --> ParaCimiers
+
+    linkStyle default stroke-width:2px,fill:none
 ```
 
 #### Spécifications techniques des équipements de protection
@@ -687,61 +730,43 @@ void IRAM_ATTR onGuideTimeout() {
 
 ### Annexe A : Logigramme de sécurité — Fin de course
 
-```
-                     ┌───────────────────┐
-                     │  DÉMARRAGE        │
-                     │  FIRMWARE         │
-                     └────────┬──────────┘
-                              │
-                              ▼
-                     ┌───────────────────┐
-                     │  INITIALISATION   │
-                     │  µC + ISRs        │
-                     │  Moteurs OFF      │
-                     └────────┬──────────┘
-                              │
-                              ▼
-                     ┌───────────────────┐
-                     │  ATTENTE          │
-                     │  COMMANDES NINA   │
-                     │  (série ASCOM)    │
-                     └────────┬──────────┘
-                              │
-              ┌───────────────┴───────────────┐
-              │                               │
-              ▼                               ▼
-    ┌───────────────────┐         ┌─────────────────────┐
-    │ COMMANDE          │         │ INTERRUPTION        │
-    │ MOUVEMENT REÇUE   │         │ FIN DE COURSE (ISR) │
-    └────────┬──────────┘         └──────────┬──────────┘
-             │                               │
-             ▼                               ▼
-    ┌───────────────────┐         ┌─────────────────────┐
-    │ FIN DE COURSE     │         │ DÉSACTIVER ENABLE   │
-    │ ACTIF ?           │         │ MOTEUR (arrêt imméd.)│
-    └──┬───────┬────────┘         └──────────┬──────────┘
-       │       │                            │
-     OUI      NON                           ▼
-       │       │                  ┌─────────────────────┐
-       ▼       ▼                  │ MARQUER ÉTAT        │
-    ┌─────┐ ┌───────┐             │ LIMIT_ACTIVE        │
-    │REFUS │ │EXÉCU-│             └──────────┬──────────┘
-    │MVT + │ │TER   │                       │
-    │ERREUR│ │MVT   │                       ▼
-    │NINA  │ │      │             ┌─────────────────────┐
-    └──┬───┘ └───────┘             │ ATTENDRE COMMANDE  │
-       │                          │ HOMING (`:Rh#`)    │
-       ▼                          └──────────┬──────────┘
-    ┌───────────────────┐                    │
-    │ ATTENDRE          │        ┌───────────┴───────────┐
-    │ COMMANDE HOMING   │        │                       │
-    └───────────────────┘        ▼                       ▼
-                          ┌──────────────┐     ┌──────────────────┐
-                          │ HOMING REÇU  │     │ PAS DE HOMING   │
-                          │ RECULER DOUCE│     │ TÉLESCOPE       │
-                          │ → POSITION 0 │     │ IMMOBILISÉ      │
-                          │ → RÉARMER OK │     │ ALERTE MAINTENUE│
-                          └──────────────┘     └──────────────────┘
+```mermaid
+flowchart TD
+    %% Styles
+    classDef main fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#0d47a1
+    classDef sub fill:#e8f5f9,stroke:#0288d1,stroke-width:3px
+    classDef alt fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+
+    Demarrage["DÉMARRAGE FIRMWARE"]:::sub
+    Init["INITIALISATION<br/>µC + ISRs<br/>Moteurs OFF"]:::main
+    Attente["ATTENTE COMMANDES NINA<br/>(série ASCOM)"]:::main
+    Decision{"COMMANDE MOUVEMENT REÇUE"}
+    Interruption["INTERRUPTION<br/>FIN DE COURSE (ISR)"]:::main
+    CheckFC{"FIN DE COURSE<br/>ACTIF ?"}
+    Refus["REFUS MVT + ERREUR NINA"]:::alt
+    ExecMvt["EXÉCUTER MVT"]:::alt
+    Disable["DÉSACTIVER ENABLE MOTEUR<br/>(arrêt imméd.)"]:::main
+    MarkLimit["MARQUER ÉTAT LIMIT_ACTIVE"]:::main
+    AttendreHome["ATTENDRE COMMANDE HOMING (`:Rh#`)"]:::main
+    AttendreHome2["ATTENDRE<br/>COMMANDE HOMING"]:::main
+    HomingRecu["HOMING REÇU<br/>RECULER DOUCE<br/>→ POSITION 0<br/>→ RÉARMER OK"]:::alt
+    PasHoming["PAS DE HOMING<br/>TÉLESCOPE IMMOBILISÉ<br/>ALERTE MAINTENUE"]:::alt
+
+    Demarrage --> Init --> Attente
+    Attente --> Decision
+    Decision -->|OUI| CheckFC
+    Decision -->|NON| Attente
+    Attente --> Interruption
+    CheckFC -->|OUI| Refus
+    CheckFC -->|NON| ExecMvt
+    ExecMvt --> Attente
+    Refus --> AttendreHome2
+    Interruption --> Disable --> MarkLimit --> AttendreHome
+    AttendreHome --> AttendreHome2
+    AttendreHome2 --> HomingRecu
+    AttendreHome2 --> PasHoming
+
+    linkStyle default stroke-width:2px,fill:none
 ```
 
 ### Annexe B : Architecture des cartes électroniques (synthèse)
@@ -816,34 +841,50 @@ void IRAM_ATTR onGuideTimeout() {
 
 ## 11. PROCHAINES ÉTAPES
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                    PLAN D'ACTION — PROCHAINES ÉTAPES            │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                  │
-│  🔴 ÉTAPE 1 — VALIDATION (J+0)                                  │
-│  ├── Valider ce rapport avec Christian Wanlin & Jean-Paul Dumoulin│
-│  └── Obtenir les réponses aux 13 questions clés (Section 8)      │
-│                                                                  │
-│  🟡 ÉTAPE 2 — PHASE URGENTE (J+1 à J+10)                        │
-│  ├── Acheter et câbler les capteurs de fin de course            │
-│  ├── Mettre à jour le firmware (ISR + Homing)                   │
-│  ├── Mesurer la résistance de terre et installer le parafoudre  │
-│  └── Installer les onduleurs                                     │
-│                                                                  │
-│  🟢 ÉTAPE 3 — PHASE COURT TERME (J+10 à J+30)                   │
-│  ├── Interviewer les concepteurs pour documenter l'autoguideur  │
-│  ├── Ajouter le pulse guide au firmware                         │
-│  ├── Protéger les lignes réseau et les câbles cimiers           │
-│  └── Documenter la calibration de l'autoguideur                 │
-│                                                                  │
-│  🔵 ÉTAPE 4 — PHASE MOYEN TERME (J+30 à J+90)                   │
-│  ├── Ajouter le filtre sur le variateur de fréquence du dôme    │
-│  ├── Rédiger le manuel utilisateur complet du T600              │
-│  ├── Créer le schéma électrique global                          │
-│  └── Tests complets de validation                               │
-│                                                                  │
-└─────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    %% Styles
+    classDef main fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#0d47a1
+    classDef sub fill:#e8f5f9,stroke:#0288d1,stroke-width:3px
+    classDef urgence fill:#ffebee,stroke:#d32f2f,stroke-width:2px
+    classDef court fill:#fff8e1,stroke:#f57f17,stroke-width:2px
+    classDef moyen fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+
+    Title["PLAN D'ACTION — PROCHAINES ÉTAPES"]:::sub
+
+    subgraph E1["🔴 ÉTAPE 1 — VALIDATION (J+0)"]
+        direction TB
+        A1["Valider ce rapport avec Christian Wanlin & Jean-Paul Dumoulin"]:::urgence
+        A2["Obtenir les réponses aux 13 questions clés (Section 8)"]:::urgence
+    end
+
+    subgraph E2["🟡 ÉTAPE 2 — PHASE URGENTE (J+1 à J+10)"]
+        direction TB
+        B1["Acheter et câbler les capteurs de fin de course"]:::court
+        B2["Mettre à jour le firmware (ISR + Homing)"]:::court
+        B3["Mesurer la résistance de terre et installer le parafoudre"]:::court
+        B4["Installer les onduleurs"]:::court
+    end
+
+    subgraph E3["🟢 ÉTAPE 3 — PHASE COURT TERME (J+10 à J+30)"]
+        direction TB
+        C1["Interviewer les concepteurs pour documenter l'autoguideur"]:::court
+        C2["Ajouter le pulse guide au firmware"]:::court
+        C3["Protéger les lignes réseau et les câbles cimiers"]:::court
+        C4["Documenter la calibration de l'autoguideur"]:::court
+    end
+
+    subgraph E4["🔵 ÉTAPE 4 — PHASE MOYEN TERME (J+30 à J+90)"]
+        direction TB
+        D1["Ajouter le filtre sur le variateur de fréquence du dôme"]:::moyen
+        D2["Rédiger le manuel utilisateur complet du T600"]:::moyen
+        D3["Créer le schéma électrique global"]:::moyen
+        D4["Tests complets de validation"]:::moyen
+    end
+
+    Title --> E1 --> E2 --> E3 --> E4
+
+    linkStyle default stroke-width:2px,fill:none
 ```
 
 ---

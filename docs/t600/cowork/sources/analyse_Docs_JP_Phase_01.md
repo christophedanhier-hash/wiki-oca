@@ -62,38 +62,50 @@ L'Observatoire Centre Ardennes (OCA) a sollicité une analyse intégrée de son 
 
 ### 2.1 Diagramme fonctionnel
 
-```
-┌─────────────────────────────────────────────────────────────────────┐
-│                        OBSERVATOIRE CENTRE ARDENNES                  │
-│                                                                      │
-│  ┌─────────────────┐          ┌─────────────────────────────────┐   │
-│  │   PUPITRE TX     │  NRF24   │   RÉCEPTEUR RX (Mega 2560)    │   │
-│  │  (Arduino Nano)  │◄────────►│                                │   │
-│  │                  │          │  ┌─────────────────────────┐   │   │
-│  │  • 3 boutons     │          │  │ Machine d'état 7 états  │   │   │
-│  │  • 4 relais loc. │          │  │ • IK (Initialisation)    │   │   │
-│  │  • NRF24 CE=9    │          │  │ • RE (Repos)             │   │   │
-│  │  • Batterie 18650│          │  │ • OU (Ouverture)         │   │   │
-│  └─────────────────┘          │  │ • FE (Fermeture)         │   │   │
-│                                │  │ • ER (Erreur)            │   │   │
-│  ┌─────────────────┐          │  │ • PL (Pluie)             │   │   │
-│  │ CHAUFFAGE NUC   │          │  │ • MT (Maintenance)       │   │   │
-│  │ (ESP8266)       │          │  └─────────────────────────┘   │   │
-│  │ WiFi→192.168.0.234│        │                                │   │
-│  │ DS18B20 sur D2   │          │  ┌─── Capteurs ─────────────────┐│
-│  │ Relais chauffage │          │  │ • 8 fins de course (D2-D9)   ││
-│  └─────────────────┘          │  │ • 4 capteurs courant A8-A11  ││
-│                                │  │ • Détecteur pluie PWM11     ││
-│  ┌─────────────────┐          │  │ • OLED SSD1309 I2C          ││
-│  │ MONTURE SKYPIKIT│          │  └─────────────────────────────┘│
-│  │ (Arduino Nano)  │          │                                │
-│  │ TMC2130 I2C     │          │  ┌─── Actionneurs ──────────────┐│
-│  │ • RA (65)       │          │  │ • 8 relais moteurs (D22-D29) ││
-│  │ • DE (66)       │          │  │ • Relais chauffage NUC(D36) ││
-│  │ • Focuser (68)  │          │  │ • LEDs état (D30-D35)       ││
-│  └─────────────────┘          │  └─────────────────────────────┘│
-│                                └─────────────────────────────────┘
-└─────────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    %% Styles
+    classDef main fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#0d47a1
+    classDef sub fill:#e8f5f9,stroke:#0288d1,stroke-width:3px
+    classDef alt fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+
+    subgraph Obs["OBSERVATOIRE CENTRE ARDENNES"]
+        subgraph Pupitre["PUPITRE TX"]
+            TX["Pupitre TX<br/>(Arduino Nano)"]:::sub
+            TX_Boutons["• 3 boutons<br/>• 4 relais loc.<br/>• NRF24 CE=9<br/>• Batterie 18650"]:::main
+        end
+        subgraph RX["RÉCEPTEUR RX (Mega 2560)"]
+            SM["Machine d'état 7 états<br/>• IK (Initialisation)<br/>• RE (Repos)<br/>• OU (Ouverture)<br/>• FE (Fermeture)<br/>• ER (Erreur)<br/>• PL (Pluie)<br/>• MT (Maintenance)"]:::sub
+            subgraph Capteurs["Capteurs"]
+                FC["• 8 fins de course (D2-D9)"]:::alt
+                CC["• 4 capteurs courant A8-A11"]:::alt
+                DP["• Détecteur pluie PWM11"]:::alt
+                OLED["• OLED SSD1309 I2C"]:::alt
+            end
+            subgraph Actionneurs["Actionneurs"]
+                RM["• 8 relais moteurs (D22-D29)"]:::alt
+                RN["• Relais chauffage NUC(D36)"]:::alt
+                LED["• LEDs état (D30-D35)"]:::alt
+            end
+        end
+        subgraph Chauffage["CHAUFFAGE NUC"]
+            CH["Chauffage NUC<br/>(ESP8266)"]:::sub
+            CH_WiFi["WiFi→192.168.0.234"]:::main
+            CH_DS["DS18B20 sur D2"]:::main
+            CH_Relais["Relais chauffage"]:::main
+        end
+        subgraph Monture["MONTURE SKYPIKIT"]
+            SK["Monture SkyPikit<br/>(Arduino Nano)"]:::sub
+            SK_TMC["TMC2130 I2C"]:::main
+            SK_RA["• RA (65)"]:::main
+            SK_DE["• DE (66)"]:::main
+            SK_Focus["• Focuser (68)"]:::main
+        end
+
+        Pupitre <-->|NRF24| RX
+    end
+
+    linkStyle default stroke-width:2px,fill:none
 ```
 
 ### 2.2 Sous-systèmes et documents correspondants
@@ -157,30 +169,29 @@ L'Observatoire Centre Ardennes (OCA) a sollicité une analyse intégrée de son 
 
 #### 3.1.3 Machine d'état `EtatCimier` (7 états)
 
-```
-                    ┌──────────┐
-                    │    IK    │ ← Initialisation (jamais défini dans le code !)
-                    └────┬─────┘
-                         │
-                    ┌────▼─────┐
-              ┌─────│    RE    │ ← Repos (attente commande)
-              │     └────┬─────┘
-              │          │
-         ┌────▼────┐ ┌──▼───────┐
-         │   OU    │ │    FE    │ ← Ouverture / Fermeture
-         └────┬────┘ └────┬─────┘
-              │           │
-              └─────┬─────┘
-                    │
-              ┌────▼─────┐
-              │    ER    │ ← Erreur (détection problème)
-              └────┬─────┘
-                   │
-         ┌─────────┼─────────┐
-         │         │         │
-    ┌────▼──┐ ┌───▼───┐ ┌───▼──┐
-    │  PL   │ │  MT   │ │ ...  │ ← Pluie / Maintenance
-    └───────┘ └───────┘ └──────┘
+```mermaid
+stateDiagram-v2
+    [*] --> IK : Initialisation (jamais défini dans le code !)
+    IK --> RE : Attente commande
+    RE --> OU : Ouverture
+    RE --> FE : Fermeture
+    OU --> RE : Fin ouverture
+    FE --> RE : Fin fermeture
+    OU --> ER : Erreur
+    FE --> ER : Erreur
+    RE --> ER : Erreur
+    ER --> PL : Détection pluie
+    ER --> MT : Maintenance
+    PL --> RE : Fin alerte pluie
+    MT --> RE : Fin maintenance
+
+    note right of IK : ← Initialisation (jamais défini dans le code !)
+    note right of RE : ← Repos (attente commande)
+    note right of OU : ← Ouverture
+    note right of FE : ← Fermeture
+    note right of ER : ← Erreur (détection problème)
+    note right of PL : ← Pluie
+    note right of MT : ← Maintenance
 ```
 
 **Observation :** La documentation technique (DOC 3) ne mentionne que **6 états** (sans l'état PL — Pluie). Le code en contient 7. L'état PL est présent dans le code mais absent de la documentation.
@@ -534,40 +545,25 @@ struct Packet {
 
 ### 8.1 Frise chronologique
 
-```
-2021 ──────────────────────────────────────────────────────────────── 2026
-│                                                                      │
-● 29/09/2021                                                          │
-│ Ajout "Perte de courant et controle manuel"                         │
-│ Modification majeure sécurité : détection de perte d'alimentation   │
-│ des moteurs + passage en mode manuel                                │
-│                                                                      │
-│               ● 07-09/06/2023                                       │
-│               │ Redéfinition tunnel PIPE                            │
-│               │ Révision complète des canaux de communication NRF24 │
-│               │ (3 jours de travail, modification majeure)          │
-│                                                                      │
-│                             ● 2024                                  │
-│                             │ Rédaction documentation technique     │
-│                             │ Document "Docs_Technique_Arduino_...  │
-│                             │ par Jean Vallieres                    │
-│                                                                      │
-│                                       ● 2025                        │
-│                                       │ Période de maintenance      │
-│                                       │ Aucune modification majeure │
-│                                       │ trouvée dans les sources    │
-│                                                                      │
-│                                             ● 2026                  │
-│                                             │ Dernière version code │
-│                                             │ BD-ReceivMega_T600... │
-│                                             │ BD-Trans_T600_2026... │
-│                                             │                        │
-│                                             │ ● (post-code) 2026    │
-│                                             │ │ Proposition nouveau │
-│                                             │ │ protocole (DOC 7)   │
-│                                             │ │ Non implémenté      │
-│                                             │ │                     │
-└─────────────────────────────────────────────────────────────────────┘
+```mermaid
+timeline
+    title Évolution du système T600 (2021–2026)
+
+    2021-09-29 : Ajout "Perte de courant et controle manuel"
+               : Modification majeure sécurité : détection de perte d'alimentation des moteurs + passage en mode manuel
+
+    2023-06-07 – 2023-06-09 : Redéfinition tunnel PIPE
+                             : Révision complète des canaux de communication NRF24 (3 jours de travail, modification majeure)
+
+    2024 : Rédaction documentation technique
+          : Document "Docs_Technique_Arduino_..." par Jean Vallieres
+
+    2025 : Période de maintenance
+          : Aucune modification majeure trouvée dans les sources
+
+    2026 : Dernière version code – BD-ReceivMega_T600_2026...
+          : Dernière version code – BD-Trans_T600_2026...
+          : (post-code) Proposition nouveau protocole (DOC 7) – Non implémenté
 ```
 
 ### 8.2 Tableau détaillé des modifications
@@ -717,31 +713,16 @@ Avant de passer à l'implémentation, les points suivants nécessitent une déci
 
 ### Annexe B — Câblage Recommandé NRF24
 
-```
-        NRF24L01+          Arduino Mega 2560 (RX)
-      ┌──────────┐        ┌───────────────┐
-      │   1 - GND├────────┤ GND           │
-      │   2 - VCC├────────┤ 3.3V          │ ← NE PAS utiliser 5V !
-      │   3 - CE ├────────┤ D8            │
-      │   4 - CSN├────────┤ D7            │
-      │   5 - SCK├────────┤ D52 (SCK)     │
-      │   6 - MOSI├───────┤ D51 (MOSI)    │
-      │   7 - MISO├───────┤ D50 (MISO)    │
-      │   8 - IRQ ├────────┤ (optionnel)   │
-      └──────────┘        └───────────────┘
-
-        NRF24L01+          Arduino Nano (TX)
-      ┌──────────┐        ┌───────────────┐
-      │   1 - GND├────────┤ GND           │
-      │   2 - VCC├────────┤ 3.3V          │ ← NE PAS utiliser 5V !
-      │   3 - CE ├────────┤ D9            │
-      │   4 - CSN├────────┤ D10           │
-      │   5 - SCK├────────┤ D13 (SCK)     │
-      │   6 - MOSI├───────┤ D11 (MOSI)    │
-      │   7 - MISO├───────┤ D12 (MISO)    │
-      │   8 - IRQ ├────────┤ (optionnel)   │
-      └──────────┘        └───────────────┘
-```
+| Broche NRF24L01+ | Connexion Arduino Mega 2560 (RX) | Connexion Arduino Nano (TX) |
+|:----------------:|:----------------------------------:|:---------------------------:|
+| 1 — GND | GND | GND |
+| 2 — VCC | **3.3V** ⚠️ NE PAS utiliser 5V ! | **3.3V** ⚠️ NE PAS utiliser 5V ! |
+| 3 — CE | D8 | D9 |
+| 4 — CSN | D7 | D10 |
+| 5 — SCK | D52 (SCK) | D13 (SCK) |
+| 6 — MOSI | D51 (MOSI) | D11 (MOSI) |
+| 7 — MISO | D50 (MISO) | D12 (MISO) |
+| 8 — IRQ | (optionnel) | (optionnel) |
 
 **⚠️ Note importante :** Le NRF24L01+ fonctionne en **3.3V logique**. L'Arduino Mega (5V) nécessite un **convertisseur de niveau logique** (diviseur résistif ou module dédié) sur les lignes MOSI, SCK, CE, CSN. La broche MISO peut être connectée directement (sortie 3.3V du NRF24 vers entrée 5V de l'Arduino — toléré).
 
@@ -765,24 +746,30 @@ Avant de passer à l'implémentation, les points suivants nécessitent une déci
 
 ### Annexe E — Schéma de Principe des Fins de Course
 
-```
-                    ┌──────────────────────────┐
-                    │     CIMIER DROIT          │
-                    │                          │
-   FD_Haut_Droit ───┤  ┌─────────────────┐     │
-   (D2)             │  │  Moteur vérin   │     │
-                    │  │  ouverture      │     │
-   FD_Bas_Droit ────┤  └─────────────────┘     │
-   (D3)             │                          │
-                    ├──────────────────────────┤
-                    │     CIMIER GAUCHE         │
-                    │                          │
-   FD_Haut_Gauche ──┤  ┌─────────────────┐     │
-   (D4)             │  │  Moteur vérin   │     │
-                    │  │  fermeture      │     │
-   FD_Bas_Gauche ───┤  └─────────────────┘     │
-   (D5)             │                          │
-                    └──────────────────────────┘
+```mermaid
+flowchart TD
+    %% Styles
+    classDef main fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#0d47a1
+    classDef sub fill:#e8f5f9,stroke:#0288d1,stroke-width:3px
+
+    subgraph CD["CIMIER DROIT"]
+        MV1["Moteur vérin ouverture"]:::main
+        FDH1["FD_Haut_Droit (D2)"]:::main
+        FDB1["FD_Bas_Droit (D3)"]:::main
+    end
+
+    subgraph CG["CIMIER GAUCHE"]
+        MV2["Moteur vérin fermeture"]:::main
+        FDH2["FD_Haut_Gauche (D4)"]:::main
+        FDB2["FD_Bas_Gauche (D5)"]:::main
+    end
+
+    FDH1 -.-> MV1
+    FDB1 -.-> MV1
+    FDH2 -.-> MV2
+    FDB2 -.-> MV2
+
+    linkStyle default stroke-width:2px,fill:none
 ```
 
 *Schéma conceptuel — 8 fins de course au total (4 par cimier : haut/bas x ouverture/fermeture)*

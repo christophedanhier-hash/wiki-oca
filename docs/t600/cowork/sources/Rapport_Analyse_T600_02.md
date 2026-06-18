@@ -218,60 +218,60 @@ Ce guide s'adresse à :
 
 ### 2.2 Architecture réseau
 
-```
-                            INTERNET
-                               │
-                            [Anydesk]
-                               │
-                    ┌──────────┴──────────┐
-                    │                     │
-            [PC T600-NUC-TELE]    [Opérateur distant]
-                    │                     │
-                    └──────────┬──────────┘
-                               │ WiFi / Réseau local
-                               │
-                    ┌──────────┴──────────┐
-                    │                     │
-            [PC T600-NUC]       [Switch WiFi Dôme]
-                    │           SSID: wireless2.4G_A84620
-                    │                     │
-                    │         ┌───────────┼───────────┐
-                    │         │           │           │
-                    │    [Caméra     [IPX800]    [Coffret
-                    │    Foscam]    .237/.238   Cimier]
-                    │    (Ethernet)  (WiFi)    192.168.1.236
-                    │                           (WiFi)
-                    │
-              [IPX800 Alim.]
-              (via D0/latch)
+```mermaid
+flowchart TD
+    %% Styles
+    classDef main fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#0d47a1
+    classDef sub fill:#e8f5f9,stroke:#0288d1,stroke-width:3px
+
+    Internet["INTERNET"]:::sub
+    AnyDesk["Anydesk"]:::main
+    PCTELE["PC T600-NUC-TELE"]:::main
+    OpDist["Opérateur distant"]:::main
+    PCNUC["PC T600-NUC"]:::main
+    SwitchWiFi["Switch WiFi Dôme<br/>SSID: wireless2.4G_A84620"]:::main
+    Foscam["Caméra Foscam<br/>(Ethernet)"]:::main
+    IPX800_1["IPX800<br/>.237/.238<br/>(WiFi)"]:::main
+    Coffret["Coffret Cimier<br/>192.168.1.236<br/>(WiFi)"]:::main
+    IPXAlim["IPX800 Alim.<br/>(via D0/latch)"]:::main
+
+    Internet --> AnyDesk
+    AnyDesk --> PCTELE
+    AnyDesk --> OpDist
+    PCTELE <-->|WiFi / Réseau local| PCNUC
+    PCNUC <--> SwitchWiFi
+    SwitchWiFi --> Foscam
+    SwitchWiFi --> IPX800_1
+    SwitchWiFi --> Coffret
+    PCNUC --> IPXAlim
+
+    linkStyle default stroke-width:2px,fill:none
 ```
 
 ### 2.3 Schéma fonctionnel global
 
 La séquence de fonctionnement du système T600 suit un ordre logique et hiérarchique :
 
-```
-1. PC T600-NUC allumé (permanent)
-       │
-2. Alimentation IPX800 (D0 = ON)
-       │
-3. Interface IPX800 accessible (.237 et .238)
-       │
-4. Activation des 4 sorties (Outputs)
-       │
-5. Équipements sous tension (télescope, caméra, etc.)
-       │
-6. Lancement des applications (Foscam, pilotage)
-       │
-7. Session d'observation
-       │
-8. Arrêt des applications
-       │
-9. Désactivation des 4 sorties (Outputs = OFF)
-       │
-10. Extinction IPX800 (D0 = OFF)
-       │
-11. (Optionnel) Extinction PC T600-NUC
+```mermaid
+flowchart TD
+    %% Styles
+    classDef main fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#0d47a1
+
+    E1["1. PC T600-NUC allumé (permanent)"]:::main
+    E2["2. Alimentation IPX800 (D0 = ON)"]:::main
+    E3["3. Interface IPX800 accessible (.237 et .238)"]:::main
+    E4["4. Activation des 4 sorties (Outputs)"]:::main
+    E5["5. Équipements sous tension (télescope, caméra, etc.)"]:::main
+    E6["6. Lancement des applications (Foscam, pilotage)"]:::main
+    E7["7. Session d'observation"]:::main
+    E8["8. Arrêt des applications"]:::main
+    E9["9. Désactivation des 4 sorties (Outputs = OFF)"]:::main
+    E10["10. Extinction IPX800 (D0 = OFF)"]:::main
+    E11["11. (Optionnel) Extinction PC T600-NUC"]:::main
+
+    E1 --> E2 --> E3 --> E4 --> E5 --> E6 --> E7 --> E8 --> E9 --> E10 --> E11
+
+    linkStyle default stroke-width:2px,fill:none
 ```
 
 > **Principe physique fondamental** : La mise sous tension suit un ordre ascendant (de l'alimentation générale vers les équipements spécifiques). L'extinction suit l'ordre inverse (des applications vers l'alimentation générale).
@@ -280,53 +280,37 @@ La séquence de fonctionnement du système T600 suit un ordre logique et hiérar
 
 #### Schéma de distribution
 
-```
-  ┌────────────────────────────────────────────────────────────────┐
-  │                      SECTEUR 230VAC                           │
-  │               (Protection différentielle 30mA)                │
-  │                    (Parafoudre recommandé)                     │
-  └───────┬──────────────────┬──────────────────┬─────────────────┘
-          │                  │                  │
-          ▼                  ▼                  ▼
-   ┌────────────┐    ┌──────────────┐   ┌──────────────┐
-   │PC T600-NUC │    │ Chargeur     │   │ Bloc secteur │
-   │(permanent) │    │ Batterie     │   │ IPX800 (12V) │
-   └──────┬─────┘    │ Cimier 230V  │   │ (piloté par  │
-          │          └──────┬───────┘   │  D0)         │
-          │                 │           └──────┬───────┘
-          │                 │                  │
-          │          ┌──────┴──────┐    ┌──────┴───────┐
-          │          │ Batterie    │    │ IPX800       │
-          │          │ 12V Cimier  │    │ 12VDC        │
-          │          │ (débranchée │    │ (latch via   │
-          │          │  pour       │    │  D0)         │
-          │          │  rotation)  │    └──────┬───────┘
-          │          └─────────────┘           │
-          │                              ┌────┴──────────────┐
-          │                              │                   │
-          │                     ┌────────┴────────┐    ┌────┴────┐
-          │                     │ Sortie 1 (Relais)│    │Sortie 2 │ ...
-          │                     │ (Output 1)      │    │(Output2)│
-          │                     └────────┬────────┘    └─────────┘
-          │                              │
-          │                              ▼
-          │                     ┌──────────────────┐
-          │                     │ Équipement #1    │
-          │                     │ (Retour Input 1) │
-          │                     └──────────────────┘
-          │
-   ┌──────┴──────┐      ┌──────────────┐
-   │ PC T600-NUC │      │ Switch WiFi  │
-   │ -TELE       │      │ 5VDC (USB)   │
-   └─────────────┘      └──────┬───────┘
-                               │
-                    ┌──────────┴──────────┐
-                    │                     │
-              ┌─────┴─────┐        ┌─────┴─────┐
-              │ Caméra    │        │ IPX800    │
-              │ Foscam    │        │ (WiFi)    │
-              │ 12V/5V    │        │           │
-              └───────────┘        └───────────┘
+```mermaid
+flowchart TD
+    %% Styles
+    classDef main fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#0d47a1
+    classDef sub fill:#e8f5f9,stroke:#0288d1,stroke-width:3px
+
+    Secteur["SECTEUR 230VAC<br/>(Protection différentielle 30mA)<br/>(Parafoudre recommandé)"]:::sub
+    PCNUC2["PC T600-NUC<br/>(permanent)"]:::main
+    Chargeur["Chargeur Batterie Cimier 230V"]:::main
+    Bloc["Bloc secteur IPX800 (12V)<br/>(piloté par D0)"]:::main
+    BattCim["Batterie 12V Cimier<br/>(débranchée pour rotation)"]:::main
+    IPX800_2["IPX800 12VDC<br/>(latch via D0)"]:::main
+    Sortie1["Sortie 1 (Relais)<br/>(Output 1)"]:::main
+    Sortie2["Sortie 2<br/>(Output 2) ..."]:::main
+    Equip1["Équipement #1<br/>(Retour Input 1)"]:::main
+    PCTELE2["PC T600-NUC-TELE"]:::main
+    SwitchWiFi2["Switch WiFi 5VDC (USB)"]:::main
+    Foscam2["Caméra Foscam 12V/5V"]:::main
+    IPX800WiFi["IPX800 (WiFi)"]:::main
+
+    Secteur --> PCNUC2
+    Secteur --> Chargeur --> BattCim
+    Secteur --> Bloc --> IPX800_2
+    IPX800_2 --> Sortie1 --> Equip1
+    IPX800_2 --> Sortie2
+    PCNUC2 --> PCTELE2
+    PCNUC2 --> SwitchWiFi2
+    SwitchWiFi2 --> Foscam2
+    SwitchWiFi2 --> IPX800WiFi
+
+    linkStyle default stroke-width:2px,fill:none
 ```
 
 #### Tableau des tensions
