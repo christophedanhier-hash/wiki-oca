@@ -22,7 +22,6 @@ Le **T600** est un télescope automatisé de type Newton sur monture équatorial
 | Section | Description |
 |---------|-------------|
 | [🔭 Projet T600](t600/index.md) | Documentation technique, formation, sources |
-| [➡️ Bureau Gérard (BAVI LEO)](bureau-gerard/index.md) | Déplacé vers le hub BAVI LEO |
 
 ---
 
