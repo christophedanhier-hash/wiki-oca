@@ -892,13 +892,13 @@ Si extinction nécessaire :
 
 ### Annexe B : Schémas électriques
 
-> *Cette annexe référence les schémas produits par l'analyse détaillée du système. Les schémas suivants sont disponibles dans les fichiers associés :*
+> *Les schémas décrits ci-dessous sont directement intégrés dans ce document sous forme de diagrammes Mermaid (voir sections 2.2, 2.3 et 2.4).*
 
-| Référence | Description | Fichier |
-|-----------|-------------|---------|
-| Schéma 1 | Distribution électrique générale (230VAC / 12VDC) | `T600-schema-electrique-v1.png` |
-| Schéma 2 | Câblage IPX800 (sorties, entrées, latch D0) | `T600-schema-ipx800-v1.png` |
-| Schéma 3 | Architecture réseau complète | `T600-architecture-reseau-v1.png` |
+| Référence | Description | Emplacement dans le document |
+|-----------|-------------|---------------------------|
+| Schéma 1 | Distribution électrique générale (230VAC / 12VDC) | [§2.4 Distribution électrique](#24-distribution-électrique) — Diagramme Mermaid |
+| Schéma 2 | Câblage IPX800 (sorties, entrées, latch D0) | [§2.1.3 IPX800](#213-ipx800) — Description détaillée |
+| Schéma 3 | Architecture réseau complète | [§2.2 Architecture réseau](#22-architecture-réseau) — Diagramme Mermaid |
 
 ---
 
