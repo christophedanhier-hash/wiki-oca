@@ -35,4 +35,4 @@ Pour toute question ou contribution, contacter Christophe via l'Observatoire Cen
 
 *Documentation vivante — mise à jour régulière.*
 
-👉 **[🛡️ Portail LEO — Écosystème complet](https://christophedanhier-hash.github.io/hermes-wiki/)**
+👉 **[🛡️ Portail LEO](https://christophedanhier-hash.github.io/hermes-wiki/)**
