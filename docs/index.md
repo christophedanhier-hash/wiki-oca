@@ -35,7 +35,7 @@ Pour toute question ou contribution, contacter Christophe via l'Observatoire Cen
 
 *Documentation vivante — mise à jour régulière.*
 
-> 🕐 **Dernière mise en ligne : 18/07/2026 02:00**
+> 🕐 **Dernière mise en ligne : 18/07/2026 03:00**
 
 👉 **[🛡️ Portail LEO](https://christophedanhier-hash.github.io/hermes-wiki/)**
 📋 **Suivi :** [leo-tracker](https://github.com/christophedanhier-hash/leo-tracker/issues/4) — Kanban avec 8 issues
