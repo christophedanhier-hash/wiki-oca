@@ -14,7 +14,6 @@ LeoDocs et Google Drive sont des espaces protégés. Les fiches de cette rubriqu
 - [Parcours et objectifs](parcours.md)
 - [Inventaire des sources de formation](inventaire-sources.md)
 - [Modules de formation](modules/index.md)
-- [Reprises intégrales du guide](sources-integrales/index.md)
 - [Connaissances](connaissances/index.md)
 - [Fiches de révision](fiches-revision/index.md)
 - [Préparation des observations](preparation-observations/index.md)

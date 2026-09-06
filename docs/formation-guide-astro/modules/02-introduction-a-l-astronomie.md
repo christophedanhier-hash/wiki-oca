@@ -72,3 +72,15 @@ Une bonne réponse de guide n’est pas nécessairement la plus longue. Elle doi
 ## Limite de la source
 
 Cette introduction expose l’intention générale du syllabus, mais ne fournit pas de méthode pédagogique détaillée ni de grille complète d’animation. Les propositions de conduite de groupe ci-dessus sont des recommandations de travail de Gérard, à distinguer du contenu source.
+
+## Contenu complet du guide — reprise structurée
+
+> Cette partie reprend l’intégralité du texte du guide pour les pages de ce module, réorganisée en paragraphes lisibles. Les ajouts de Gérard sont placés dans les autres sections de la fiche.
+
+### Contenu source — page 3
+
+2. Introduction
+
+Ce syllabus se veut une introduction, très généraliste, à l’astronomie, dans l’objectif de former des candidats guides-nature et astronomes amateurs à pouvoir ex­ pliquer le ciel. Nul doute que lors de vos balades au clair de Lune, ou en pleine nuit, vous aurez l’occasion de lever les yeux vers le ciel. Parfois la Lune sera pleine, et vous arriverez à vous déplacer sans éclairage autre que sa lueur, et parfois elle sera nouvelle, et peut-être pour­ rez-vous observer la voie lactée.
+
+Accompagné de votre public, en attendant que vous puissiez observer ce que vous attendez en termes d’oiseaux nocturnes chanteurs, de chauves-souris, etc., peut-être aurez-vous l’une ou l’autre question sur le ciel qui vous surplombe.

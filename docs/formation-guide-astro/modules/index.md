@@ -16,18 +16,14 @@ Cette section présente une synthèse module par module du syllabus `Introductio
 - [Module 10 — Le nombre d’étoiles dans l’Univers](10-nombre-etoiles-univers.md)
 - [Module 11 — Pratique de terrain](11-pratique-de-terrain.md)
 
-## Reprises intégrales du guide
-
-- [📖 Ouvrir les reprises intégrales du PDF](../sources-integrales/index.md)
-
-Chaque fiche ci-dessus est une synthèse pédagogique enrichie. La transcription module par module du guide source est séparée dans `sources-integrales/`.
-
-Chaque fiche sépare :
+Chaque fiche intègre désormais le contenu du guide dans une structure lisible, puis sépare :
 
 - le contenu attribuable au document source ;
 - les objectifs de formation ;
 - les adaptations pédagogiques proposées pour le guidage ;
 - les questions de révision ;
 - les points à confirmer.
+
+La transcription brute conservée dans [`sources-integrales/`](../sources-integrales/index.md) est uniquement une archive de traçabilité ; elle n’est pas le support recommandé pour l’étude.
 
 Les compléments issus du Web sont identifiés séparément et ne remplacent pas les trois PDF sources de la formation.

@@ -1,6 +1,8 @@
-# Reprises intégrales du guide
+# Archive de traçabilité — extraction du guide
 
-Cette section contient la transcription complète, module par module, du PDF `Astronomie.pdf`.
+Cette section conserve l’extraction complète, module par module, du PDF `Introduction à l’astronomie`.
+
+> **Important :** ces pages sont une archive technique destinée à vérifier qu’aucun passage source n’a été perdu. Leur mise en page brute n’est pas adaptée à l’étude. Pour suivre la formation, utiliser les [modules structurés](../modules/index.md), dans lesquels le contenu est intégré sous une forme lisible et enrichie.
 
 ## Principe
 
