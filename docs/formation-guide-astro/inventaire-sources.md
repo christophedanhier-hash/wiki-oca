@@ -5,6 +5,13 @@
 **Dernière vérification de l’accès :** 6 septembre 2026  
 **Statut :** inventaire initial — contenu à exploiter
 
+## Accès centralisé
+
+- [📚 LeoDocs — base documentaire](https://tofdan.be/docs/)
+- [📁 Dossier Google Drive — Formation Guide](https://drive.google.com/drive/folders/1rCJ9jlKlN_cEQatO8eBRoVT79bqNvj5U)
+
+LeoDocs donne accès aux documents Markdown indexés et aux bases de travail. Les PDF originaux de ce dossier restent les sources primaires de la formation.
+
 ## Documents trouvés
 
 ### 1. Introduction à l’astronomie
