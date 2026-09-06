@@ -7,6 +7,23 @@
 - **Pages :** 3 du document PDF
 - **Source Drive :** [Astronomie.pdf](https://drive.google.com/file/d/1VKdzcqjsHL7iiYPSFOkPYnqRRlyCM-Fq/view?usp=drivesdk)
 
+## Supports visuels
+
+![Méthode en trois étapes pour le guide astro](../../assets/formation-guide-astro/introduction/methode-guide.svg)
+
+*Figure 1 — Observer, expliquer, relier à une expérience. Schéma original créé pour ce support.*
+
+![La Terre et la Lune : ordre de grandeur de la distance](../../assets/formation-guide-astro/introduction/terre-lune-echelle.svg)
+
+*Figure 2 — La distance moyenne Terre–Lune est d’environ 384 400 km. La représentation est pédagogique et non à l’échelle exacte.*
+
+## Ressources complémentaires
+
+- [Modeling the Earth-Moon System — NASA JPL Education](https://www.jpl.nasa.gov/edu/resources/lesson-plan/modeling-the-earth-moon-system/)
+- [Seeing the Earth, Moon, and Sun to Scale — NASA](https://www.grc.nasa.gov/www/k-12/Numbers/Math/Mathematical_Thinking/seeing_the_earth_moon.htm)
+
+Ces ressources sont utiles pour transformer les ordres de grandeur en démonstration de terrain.
+
 ## Rôle du module
 
 Le syllabus se présente comme une introduction généraliste destinée à des candidats guides-nature et astronomes amateurs. L’objectif pratique est de permettre d’expliquer le ciel lors d’une sortie, d’une balade nocturne ou d’une animation, y compris lorsque le public pose des questions en marge de l’activité principale.

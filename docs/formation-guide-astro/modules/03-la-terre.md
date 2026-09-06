@@ -7,6 +7,29 @@
 - **Pages :** 4–7 du document PDF
 - **Source Drive :** [Astronomie.pdf](https://drive.google.com/file/d/1VKdzcqjsHL7iiYPSFOkPYnqRRlyCM-Fq/view?usp=drivesdk)
 
+## Supports visuels
+
+![Les saisons et l’inclinaison de l’axe terrestre](../../assets/formation-guide-astro/terre/saisons.svg)
+
+*Figure 1 — L’inclinaison de l’axe terrestre explique l’alternance des saisons. Schéma original créé pour ce support ; non à l’échelle.*
+
+![Journée solaire et journée sidérale](../../assets/formation-guide-astro/terre/journees.svg)
+
+*Figure 2 — La Terre doit tourner un peu plus pour retrouver le Soleil, car elle avance sur son orbite. Schéma original ; non à l’échelle.*
+
+![Structure interne simplifiée et magnétosphère](../../assets/formation-guide-astro/terre/structure-magnetosphere.svg)
+
+*Figure 3 — Structure interne simplifiée et interaction avec le vent solaire. Schéma original ; non à l’échelle.*
+
+## Ressources complémentaires
+
+- [What Causes the Seasons? — NASA Space Place](https://spaceplace.nasa.gov/seasons/)
+- [Earth’s Magnetosphere — NASA Science](https://science.nasa.gov/science-research/earth-science/earths-magnetosphere-protecting-our-planet-from-harmful-space-energy/)
+- [Auroras — NASA Science](https://science.nasa.gov/sun/auroras/)
+- [Climate, seasons and weather — ESA Eduspace](https://esa.int/SPECIALS/Eduspace_Weather_EN/SEM62I3UFLG_0.html)
+
+Ces ressources complètent les pages 4–7 du syllabus ; elles ne remplacent pas la source de formation.
+
 ## Objectifs
 
 À la fin de ce module, je dois pouvoir :

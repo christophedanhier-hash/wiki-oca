@@ -12,6 +12,19 @@ Cette fiche synthétise les objectifs explicitement indiqués dans le document s
 - **Source Drive :** [Astronomie.pdf](https://drive.google.com/file/d/1VKdzcqjsHL7iiYPSFOkPYnqRRlyCM-Fq/view?usp=drivesdk)
 - **Nature :** objectifs évalués en fin de module et objectifs potentiellement évalués dans le portfolio ou lors de l’excursion guidée.
 
+## Support visuel — les quatre compétences du guide
+
+![Les quatre compétences du guide astro](../../assets/formation-guide-astro/objectifs/competences-guide.svg)
+
+*Figure 1 — Comprendre, reconnaître, expliquer et guider. Schéma original créé pour ce support ; il s’agit d’une grille pédagogique de travail, pas d’une nouvelle exigence officielle.*
+
+## Ressources complémentaires
+
+- [Skywatching Tips — NASA](https://science.nasa.gov/skywatching/)
+- [How to Find Good Places to Stargaze — NASA](https://science.nasa.gov/solar-system/how-to-find-good-places-to-stargaze/)
+
+Ces ressources illustrent la dimension pratique de l’observation. Les exigences officielles restent celles du syllabus et de l’organisme de formation.
+
 ## Objectifs évalués en fin de module
 
 À l’issue du module, le document demande notamment de pouvoir :
