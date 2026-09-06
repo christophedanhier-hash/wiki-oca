@@ -53,8 +53,23 @@ nav:
   - 🔭 Projet T600:
       - Aperçu: t600/index.md
       - Documentation technique: t600/technique.md
-      - Formation opérateur: t600/formation.md
+      - Formation opérateur: t600/formation-operateur.md
       - 📚 Sources & ethnographie: t600/sources.md
       - 🤖 Analyse Cowork (Copilot):
         - Présentation: t600/cowork/index.md
         - Analyse comparative: t600/cowork/comparative.md
+  - 🌌 Activités astronomiques:
+      - Vue d’ensemble: astronomie/index.md
+      - Observation: astronomie/observation/index.md
+      - Astrophotographie: astronomie/astrophotographie/index.md
+      - Matériel: astronomie/materiel/index.md
+      - Objets célestes: astronomie/objets-celestes/index.md
+      - Projets personnels: astronomie/projets-personnels/index.md
+  - 🎓 Formation de guide astro:
+      - Vue d’ensemble: formation-guide-astro/index.md
+      - Parcours et objectifs: formation-guide-astro/parcours.md
+      - Connaissances: formation-guide-astro/connaissances/index.md
+      - Fiches de révision: formation-guide-astro/fiches-revision/index.md
+      - Préparation des observations: formation-guide-astro/preparation-observations/index.md
+      - Pédagogie et animation: formation-guide-astro/pedagogie/index.md
+      - Supports d’animation: formation-guide-astro/supports-animation/index.md

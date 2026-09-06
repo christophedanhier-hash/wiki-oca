@@ -1,41 +1,26 @@
-# 🌌 Observatoire Centre Ardenne
+# 🌌 Wiki Astronomie — Observatoire Centre Ardenne
 
-Bienvenue sur le **Wiki OCA** — documentation technique du **Projet T600**, un télescope automatisé en cours de construction au sein de l'[Observatoire Centre Ardenne](https://observatoire-centre-ardenne.be/).
+Bienvenue sur le wiki consacré aux activités astronomiques de **Christophe Danhier** et à la documentation de l’**Observatoire Centre Ardenne (OCA)**.
 
----
+Ce wiki sépare explicitement le **Projet T600**, les activités astronomiques générales et la **formation de guide astro**.
 
-## 🔭 Le Projet T600 en bref
+## Navigation
 
-Le **T600** est un télescope automatisé de type Newton sur monture équatoriale, conçu pour l'observation et l'astrophotographie. Ce projet est porté par **Jean-Paul Dumoulin** et **Christian** de l'Observatoire Centre Ardenne, avec le soutien du **Bureau Gérard** ([BAVI LEO](https://christophedanhier-hash.github.io/BAVI_LEO/)) pour la documentation technique.
+- [🔭 Projet T600](t600/index.md) — documentation technique et formation opérateur de l’instrument de l’OCA
+- [🌌 Activités astronomiques](astronomie/index.md) — observation, astrophotographie, matériel et projets généraux
+- [🎓 Formation de guide astro](formation-guide-astro/index.md) — parcours, connaissances, pédagogie et préparation des animations
 
-### Objectifs
+## Règles de classement
 
-- 🎯 Automatisation complète du pointage et du suivi sidéral
-- 📸 Astrophotographie grand champ
-- 🔧 Maintenance documentée et reproductible
-- 📚 Formation des opérateurs
+- Les documents qui concernent spécifiquement le télescope T600 sont classés dans `t600/`.
+- Les activités astronomiques générales ou personnelles sont classées dans `astronomie/`.
+- Les contenus liés à l’apprentissage et à la pratique du guidage astronomique sont classés dans `formation-guide-astro/`.
+- Les documents transversaux indiquent leur périmètre et renvoient vers les rubriques concernées.
 
----
+## Documentation interne
 
-## 📖 Navigation
-
-| Section | Description |
-|---------|-------------|
-| [🔭 Projet T600](t600/index.md) | Documentation technique, formation, sources |
+La documentation relative au fonctionnement du Bureau Gérard, à ses méthodes et à sa traçabilité reste dans le [wiki BAVI LEO](https://christophedanhier-hash.github.io/BAVI_LEO/).
 
 ---
 
-## 🤝 Contribuer
-
-Ce wiki est maintenu par **Christophe Danhier** avec le **Bureau Gérard** ([BAVI LEO](https://christophedanhier-hash.github.io/BAVI_LEO/)) — un cabinet virtuel d'agents spécialisés dans la documentation technique.
-
-Pour toute question ou contribution, contacter Christophe via l'Observatoire Centre Ardenne.
-
----
-
-*Documentation vivante — mise à jour régulière.*
-
-> 🕐 **Dernière mise en ligne : 28/08/2026 05:15**
-
-👉 **[🛡️ Portail LEO](https://christophedanhier-hash.github.io/hermes-wiki/)**
-📋 **Suivi :** [leo-tracker](https://github.com/christophedanhier-hash/leo-tracker/issues/4) — Kanban avec 8 issues
+*Documentation vivante — structure mise en place le 06/09/2026.*

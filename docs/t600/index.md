@@ -33,7 +33,7 @@ Télescope de type **Newton sur monture équatoriale allemande** (GEM), intégr�
 ## Navigation
 
 - [📄 Documentation technique](technique.md) — Architecture, câblage, firmware, protocoles
-- [🎓 Formation opérateur](formation.md) — Parcours pédagogique complet
+- [🎓 Formation opérateur](formation-operateur.md) — Parcours pédagogique complet
 - [📚 Sources & ethnographie](sources.md) — Fiches structurées extraites des experts
 - [🤖 Analyse Cowork](cowork/index.md) — Rapports Copilot Microsoft
 - [📊 Analyse comparative](cowork/comparative.md) — Hermes vs Cowork
