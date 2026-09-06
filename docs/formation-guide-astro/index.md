@@ -6,6 +6,7 @@ Cette rubrique rassemble le parcours de formation de Christophe comme guide astr
 
 - [Parcours et objectifs](parcours.md)
 - [Inventaire des sources de formation](inventaire-sources.md)
+- [Modules de formation](modules/index.md)
 - [Connaissances](connaissances/index.md)
 - [Fiches de révision](fiches-revision/index.md)
 - [Préparation des observations](preparation-observations/index.md)
