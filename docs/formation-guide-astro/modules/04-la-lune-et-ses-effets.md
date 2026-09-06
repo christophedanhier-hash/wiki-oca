@@ -7,6 +7,35 @@
 - **Pages :** 8–11 du document PDF
 - **Source Drive :** [Astronomie.pdf](https://drive.google.com/file/d/1VKdzcqjsHL7iiYPSFOkPYnqRRlyCM-Fq/view?usp=drivesdk)
 
+## Supports visuels
+
+### Schémas pédagogiques originaux
+
+![Phases lunaires — schéma pédagogique](../../assets/formation-guide-astro/lune/phases-lunaires.svg)
+
+*Figure 1 — Les phases dépendent de la portion éclairée visible depuis la Terre. Schéma original créé pour ce support par Gérard ; non à l’échelle.*
+
+![Éclipses de Lune et de Soleil — schéma pédagogique](../../assets/formation-guide-astro/lune/eclipses.svg)
+
+*Figure 2 — Comparaison des deux alignements. Schéma original créé pour ce support par Gérard ; non à l’échelle.*
+
+![Principe simplifié des marées](../../assets/formation-guide-astro/lune/marees.svg)
+
+*Figure 3 — Bourrelets de marée et alignement Soleil–Terre–Lune. Schéma original créé pour ce support ; non à l’échelle. La géographie locale modifie fortement les hauteurs observées.*
+
+## Ressources visuelles externes
+
+Ces ressources complètent le syllabus sans en modifier le contenu principal :
+
+- [Phases de la Lune — NASA Science](https://science.nasa.gov/moon/moon-phases/)
+- [Éclipses et la Lune — NASA Science](https://science.nasa.gov/moon/eclipses/)
+- [Schémas et animations sur les marées — NASA](https://science.nasa.gov/resource/tides/)
+- [Qu’est-ce qu’une éclipse ? — ESA](https://www.esa.int/Science_Exploration/Space_Science/What_is_an_eclipse)
+- [Activité pédagogique sur les phases — NASA JPL Education](https://www.jpl.nasa.gov/edu/resources/lesson-plan/moon-phases/)
+- [Galerie de paysages lunaires — NASA](https://science.nasa.gov/moon/image-galleries/moonscapes/)
+
+Les pages NASA et ESA sont des ressources institutionnelles. Pour toute réutilisation hors de ce wiki, vérifier les conditions et crédits indiqués sur la page source. Les schémas originaux ci-dessus peuvent être réutilisés dans tes supports de formation en conservant leur légende.
+
 ## Objectifs
 
 À la fin de ce module, je dois pouvoir :
