@@ -128,7 +128,63 @@ def panel(data, x0, label, year, month, day, utc_hour):
     s.append(f'<text x="{x0+350}" y="493" text-anchor="middle" fill="#9eb1cb" font-size="11" font-family="sans-serif">Cercle extérieur = horizon ; centre = zénith ; étoiles sous l’horizon non dessinées</text></g>')
     return ''.join(s)
 
+def focused_map(data, label, year, month, day, utc_hour):
+    """Agrandissement pédagogique de la figure, en conservant la géométrie locale."""
+    lst = lst_hours(year, month, day, utc_hour)
+    raw=[]
+    for name, greek, ra, dec, mag in data['stars']:
+        alt, az = altaz(ra, dec, lst)
+        if alt >= 0:
+            raw.append((az, alt, name, greek, mag))
+    # Coordonnées locales : azimut horizontal, altitude verticale.
+    # On agrandit uniquement l'emprise de la constellation visible.
+    xs=[sin(radians(a))*(90-al)/90 for a,al,*_ in raw]
+    ys=[-cos(radians(a))*(90-al)/90 for a,al,*_ in raw]
+    xmin,xmax=min(xs),max(xs); ymin,ymax=min(ys),max(ys)
+    margin=0.16
+    xmin-=margin; xmax+=margin; ymin-=margin; ymax+=margin
+    W,H=900,620
+    left,top,right,bottom=90,105,810,535
+    def xy(x,y):
+        return (left+(x-xmin)/(xmax-xmin)*(right-left),
+                top+(y-ymin)/(ymax-ymin)*(bottom-top))
+    coords=[]
+    visible_by_name={name:(az,alt,mag) for az,alt,name,greek,mag in raw}
+    for name,greek,ra,dec,mag in data['stars']:
+        if name in visible_by_name:
+            az,alt,_=visible_by_name[name]
+            x,y=xy(sin(radians(az))*(90-alt)/90,-cos(radians(az))*(90-alt)/90)
+            coords.append((x,y,alt,az,name,greek,mag))
+        else:
+            coords.append((None,None,-1,0,name,greek,mag))
+    out=[f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" role="img" aria-label="{data["title"]}, dessin pédagogique orienté pour le 7 septembre 2026 à 22 heures">']
+    out.append('<rect width="900" height="620" fill="#050d1b"/>')
+    out.append(f'<text x="450" y="38" text-anchor="middle" fill="#ffffff" font-size="26" font-family="sans-serif" font-weight="bold">{data["title"]}</text>')
+    out.append(f'<text x="450" y="67" text-anchor="middle" fill="#bdd0e8" font-size="16" font-family="sans-serif">Dessin à reproduire — Belgique, 7 septembre 2026, 22 h CEST — latitude 50° N</text>')
+    out.append(f'<rect x="{left}" y="{top}" width="{right-left}" height="{bottom-top}" rx="18" fill="#0a1c34" stroke="#6682a8" stroke-width="2"/>')
+    # Repère local discret : N en haut, E à droite, O à gauche.
+    out.append(f'<text x="450" y="92" text-anchor="middle" fill="#ffffff" font-size="16" font-family="sans-serif" font-weight="bold">N</text>')
+    out.append(f'<text x="{right+24}" y="320" text-anchor="middle" fill="#ffffff" font-size="16" font-family="sans-serif" font-weight="bold">E</text>')
+    out.append(f'<text x="{left-24}" y="320" text-anchor="middle" fill="#ffffff" font-size="16" font-family="sans-serif" font-weight="bold">O</text>')
+    for i,j in data['lines']:
+        a,b=coords[i],coords[j]
+        if a[0] is not None and b[0] is not None:
+            out.append(f'<line x1="{a[0]:.1f}" y1="{a[1]:.1f}" x2="{b[0]:.1f}" y2="{b[1]:.1f}" stroke="#b6c9e4" stroke-width="3" stroke-linecap="round"/>')
+    for x,y,alt,az,name,greek,mag in coords:
+        if x is None: continue
+        out.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="{max(5,10-1.1*mag):.1f}" fill="#ffdf72" stroke="#fff9d5" stroke-width="1.5"/>')
+        # Les noms sont placés hors de la ligne autant que possible.
+        dx,dy=12,-10
+        if x>700: dx=-145
+        if y<145: dy=20
+        out.append(f'<text x="{x+dx:.1f}" y="{y+dy:.1f}" fill="#ffffff" font-size="15" font-family="sans-serif">{name} — mag. {mag:g}</text>')
+    out.append('<text x="450" y="580" text-anchor="middle" fill="#a9bdd8" font-size="14" font-family="sans-serif">Agrandissement pédagogique : la forme est conservée, mais la carte n’est pas à l’échelle.</text>')
+    out.append('</svg>')
+    return ''.join(out)
+
 for key,data in stars.items():
+    focused = focused_map(data,'',2026,9,7,20)
+    (OUT/f'{key}-pedagogique-22h.svg').write_text(focused, encoding='utf-8')
     svg22 = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 510" role="img" aria-label="{data['title']} le 7 septembre 2026 à 22 heures en Belgique">
 <rect width="700" height="510" fill="#030914"/>
 {panel(data,0,'7 septembre 2026 — 22 h CEST',2026,9,7,20)}

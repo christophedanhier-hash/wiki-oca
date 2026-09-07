@@ -50,7 +50,7 @@ Repère principal : les deux étoiles du bord de la « casserole », **Merak** e
 
 ### Dessin à reproduire
 
-![Grande Ourse orientée pour la Belgique, le 7 septembre 2026 à 22 h](../assets/formation-guide-astro/constellations/grande-ourse-oriente-22h.svg)
+![Grande Ourse — agrandissement pédagogique orienté pour la Belgique, le 7 septembre 2026 à 22 h](../assets/formation-guide-astro/constellations/grande-ourse-pedagogique-22h.svg)
 
 ### Étoiles principales
 
@@ -101,7 +101,7 @@ Son repère principal est le **Trapèze ou Keystone d’Hercule**, quadrilatère
 
 ### Dessin à reproduire
 
-![Hercule orienté pour la Belgique, le 7 septembre 2026 à 22 h](../assets/formation-guide-astro/constellations/hercule-oriente-22h.svg)
+![Hercule — agrandissement pédagogique orienté pour la Belgique, le 7 septembre 2026 à 22 h](../assets/formation-guide-astro/constellations/hercule-pedagogique-22h.svg)
 
 ### Étoiles principales
 
@@ -148,7 +148,7 @@ Repères : partir de Cassiopée ou de Polaris, puis chercher la forme de maison.
 
 ### Dessin à reproduire
 
-![Céphée orientée pour la Belgique, le 7 septembre 2026 à 22 h](../assets/formation-guide-astro/constellations/cephee-oriente-22h.svg)
+![Céphée — agrandissement pédagogique orienté pour la Belgique, le 7 septembre 2026 à 22 h](../assets/formation-guide-astro/constellations/cephee-pedagogique-22h.svg)
 
 ### Étoiles principales
 
