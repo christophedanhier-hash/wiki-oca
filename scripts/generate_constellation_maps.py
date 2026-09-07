@@ -129,6 +129,11 @@ def panel(data, x0, label, year, month, day, utc_hour):
     return ''.join(s)
 
 for key,data in stars.items():
+    svg22 = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 510" role="img" aria-label="{data['title']} le 7 septembre 2026 à 22 heures en Belgique">
+<rect width="700" height="510" fill="#030914"/>
+{panel(data,0,'7 septembre 2026 — 22 h CEST',2026,9,7,20)}
+</svg>'''
+    (OUT/f'{key}-oriente-22h.svg').write_text(svg22, encoding='utf-8')
     svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1450 510" role="img" aria-label="{data['title']} le 7 septembre 2026 à 22 heures et le 8 septembre à 5 heures en Belgique">
 <rect width="1450" height="510" fill="#030914"/>
 <text x="725" y="18" text-anchor="middle" fill="#dce9ff" font-size="12" font-family="sans-serif">Vue locale du ciel — cartes indicatives calculées pour 50° N, longitude 4,5° E</text>
