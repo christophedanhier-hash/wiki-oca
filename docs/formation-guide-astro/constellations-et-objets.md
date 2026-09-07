@@ -27,6 +27,8 @@ Les valeurs ci-dessous sont des valeurs visuelles indicatives, généralement ar
 - [NASA — objets du Système solaire et ciel profond](https://science.nasa.gov/)
 - [NOIRLab — figures des constellations](https://noirlab.edu/public/education/constellations/)
 - [IAU stick figures — données et convention de tracé](https://github.com/dcf21/constellation-stick-figures)
+- [Wikipédia — Hercule](https://fr.wikipedia.org/wiki/Hercule_(constellation))
+- [Wikimedia Commons — carte IAU d’Hercule](https://commons.wikimedia.org/wiki/File:Hercules_IAU.svg)
 
 ## Cartes orientées pour la Belgique — 7 septembre 2026
 
@@ -34,7 +36,7 @@ Les cartes principales ci-dessous montrent un seul état de la nuit : **22 h 00 
 
 Convention de lecture : **Nord en haut, Est à droite, Sud en bas, Ouest à gauche**. Le bord du cercle représente l’horizon et le centre représente le zénith. Les étoiles sous l’horizon ne sont pas dessinées. Les lignes indiquent uniquement la figure pédagogique de la constellation ; elles ne représentent pas des limites officielles.
 
-**Correction des dessins :** les figures ont été reprises avec une convention de type « stick figure » utilisée dans les cartes de planétarium. Il n’existe pas une seule manière officiellement obligatoire de relier les étoiles d’une constellation. La Grande Ourse montre le Grand Chariot et quelques étoiles de la silhouette de l’Ourse ; Hercule montre explicitement le Keystone (π–η–ζ–ε Her) et les prolongements de la figure ; Céphée montre la maison classique à cinq sommets. Les étoiles ajoutées pour compléter la silhouette sont identifiées dans les cartes par leur nom et leur magnitude. Pour Hercule, le dessin pédagogique fixe est utilisé afin de préserver une silhouette reconnaissable ; il ne s’agit pas d’une projection à l’échelle.
+**Correction des dessins :** les figures sont présentées comme des dessins classiques de constellation, indépendants de la date, de l’heure et du lieu. La Grande Ourse montre le Grand Chariot et quelques étoiles de la silhouette de l’Ourse ; Hercule montre explicitement le Keystone (π–η–ζ–ε Her) et les prolongements traditionnels de la figure ; Céphée montre la maison classique à cinq sommets. Les étoiles ajoutées pour compléter la silhouette sont identifiées dans les cartes par leur nom et leur magnitude. La carte orientée pour la Belgique est conservée séparément dans la fiche d’observation.
 
 La fiche conserve aussi une version secondaire comparant 22 h et 5 h, mais elle n’est pas utilisée comme dessin principal : les cartes individuelles ci-dessous sont volontairement plus grandes et plus lisibles. Elles ne remplacent pas une carte détaillée de cheminement pour les objets faibles. Pour les objets Messier et NGC, utiliser ensuite les jalons indiqués dans les fiches ci-dessous avec des jumelles ou un télescope.
 
@@ -101,7 +103,7 @@ Son repère principal est le **Trapèze ou Keystone d’Hercule**, quadrilatère
 
 ### Dessin à reproduire
 
-![Hercule — agrandissement pédagogique orienté pour la Belgique, le 7 septembre 2026 à 22 h](../assets/formation-guide-astro/constellations/hercule-pedagogique-22h.svg)
+![Hercule — dessin classique pédagogique](../assets/formation-guide-astro/constellations/hercule-pedagogique-22h.svg)
 
 ### Étoiles principales
 

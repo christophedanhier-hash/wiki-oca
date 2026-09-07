@@ -183,9 +183,9 @@ def focused_map(data, label, year, month, day, utc_hour):
     return ''.join(out)
 
 def clean_hercules_map():
-    """Dessin pédagogique fixe d'Hercule : la géométrie reste lisible."""
-    # Convention pédagogique : le Keystone est le torse, avec Eta en haut-gauche,
-    # Pi en haut-droite, Epsilon en bas-droite et Zeta en bas-gauche.
+    """Dessin classique simplifié d'Hercule, indépendant du lieu et de la date."""
+    # Figure classique inspirée de la carte IAU/Sky & Telescope reprise par
+    # Wikipedia : le Keystone forme le torse, avec les extensions du héros.
     pos = {
         'Eta Her': (330, 235), 'Pi Her': (565, 235),
         'Zeta Her': (365, 405), 'Epsilon Her': (535, 405),
@@ -197,7 +197,7 @@ def clean_hercules_map():
     }
     mags = {name: mag for name, greek, ra, dec, mag in stars['hercule']['stars']}
     greek = {name: greek for name, greek, ra, dec, mag in stars['hercule']['stars']}
-    # Keystone puis bras, tête et jambes : aucune liaison ne traverse le torse.
+    # Keystone puis extensions classiques ; les segments restent lisibles.
     lines = [
         ('Eta Her','Pi Her'), ('Pi Her','Epsilon Her'),
         ('Epsilon Her','Zeta Her'), ('Zeta Her','Eta Her'),
@@ -210,7 +210,7 @@ def clean_hercules_map():
     out=[f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" role="img" aria-label="Hercule, dessin pédagogique de la constellation">']
     out.append('<rect width="980" height="680" fill="#050d1b"/>')
     out.append('<text x="490" y="38" text-anchor="middle" fill="#ffffff" font-size="28" font-family="sans-serif" font-weight="bold">Hercule — dessin pédagogique</text>')
-    out.append('<text x="490" y="68" text-anchor="middle" fill="#bdd0e8" font-size="16" font-family="sans-serif">Belgique — 7 septembre 2026 — 22 h CEST — latitude 50° N</text>')
+    out.append('<text x="490" y="68" text-anchor="middle" fill="#bdd0e8" font-size="16" font-family="sans-serif">Figure classique — représentation pédagogique, indépendante de la date et du lieu</text>')
     out.append('<rect x="90" y="95" width="800" height="510" rx="20" fill="#0a1c34" stroke="#6682a8" stroke-width="2"/>')
     out.append('<text x="490" y="120" text-anchor="middle" fill="#ffffff" font-size="16" font-family="sans-serif" font-weight="bold">N</text>')
     out.append('<text x="920" y="355" text-anchor="middle" fill="#ffffff" font-size="16" font-family="sans-serif" font-weight="bold">E</text>')
@@ -226,7 +226,7 @@ def clean_hercules_map():
         if x>760: dx=-150
         if name in ('Eta Her','Pi Her','Theta Her','Iota Her'): dy=20
         out.append(f'<text x="{x+dx}" y="{y+dy}" fill="#ffffff" font-size="15" font-family="sans-serif">{name} — mag. {mag:g}</text>')
-    out.append('<text x="490" y="642" text-anchor="middle" fill="#a9bdd8" font-size="14" font-family="sans-serif">Figure pédagogique : la forme est volontairement agrandie et non à l’échelle.</text>')
+    out.append('<text x="490" y="642" text-anchor="middle" fill="#a9bdd8" font-size="14" font-family="sans-serif">Figure classique agrandie : la forme est pédagogique et non à l’échelle.</text>')
     out.append('</svg>')
     return ''.join(out)
 
