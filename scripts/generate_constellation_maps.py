@@ -231,10 +231,11 @@ def clean_hercules_map():
     return ''.join(out)
 
 for key,data in stars.items():
-    if key == 'hercule':
-        (OUT/'hercule-pedagogique-22h.svg').write_text(clean_hercules_map(), encoding='utf-8')
     focused = focused_map(data,'',2026,9,7,20)
     (OUT/f'{key}-pedagogique-22h.svg').write_text(focused, encoding='utf-8')
+    if key == 'hercule':
+        # Le dessin classique ne doit pas être remplacé par la carte locale agrandie.
+        (OUT/'hercule-pedagogique-22h.svg').write_text(clean_hercules_map(), encoding='utf-8')
     svg22 = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 510" role="img" aria-label="{data['title']} le 7 septembre 2026 à 22 heures en Belgique">
 <rect width="700" height="510" fill="#030914"/>
 {panel(data,0,'7 septembre 2026 — 22 h CEST',2026,9,7,20)}
