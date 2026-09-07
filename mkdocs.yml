@@ -29,6 +29,7 @@ extra:
 
 markdown_extensions:
   - admonition
+  - md_in_html
   - pymdownx.details
   - pymdownx.superfences:
       custom_fences:
@@ -46,6 +47,9 @@ markdown_extensions:
 
 extra_javascript:
   - https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js
+
+extra_css:
+  - stylesheets/formation-constellations.css
 
 
 nav:
