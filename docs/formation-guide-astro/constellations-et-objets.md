@@ -103,7 +103,7 @@ Son repère principal est le **Trapèze ou Keystone d’Hercule**, quadrilatère
 
 ### Dessin à reproduire
 
-![Hercule — dessin classique pédagogique](../assets/formation-guide-astro/constellations/hercule-pedagogique-22h.svg)
+![Hercule — dessin classique pédagogique](../assets/formation-guide-astro/constellations/hercule-classique.svg)
 
 ### Étoiles principales
 
