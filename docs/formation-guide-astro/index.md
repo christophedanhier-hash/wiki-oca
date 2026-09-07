@@ -19,5 +19,6 @@ LeoDocs et Google Drive sont des espaces protégés. Les fiches de cette rubriqu
 - [Préparation des observations](preparation-observations/index.md)
 - [Pédagogie et animation](pedagogie/index.md)
 - [Supports d’animation](supports-animation/index.md)
+- [Constellations et objets à étudier](constellations-et-objets.md)
 
 > **Distinction :** la [formation opérateur du T600](../t600/formation-operateur.md) concerne l’utilisation de l’instrument. Cette rubrique concerne la formation générale au guidage astronomique.
