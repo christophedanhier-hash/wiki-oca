@@ -29,6 +29,8 @@ Les valeurs ci-dessous sont des valeurs visuelles indicatives, généralement ar
 - [IAU stick figures — données et convention de tracé](https://github.com/dcf21/constellation-stick-figures)
 - [Wikipédia — Hercule](https://fr.wikipedia.org/wiki/Hercule_(constellation))
 - [Wikimedia Commons — carte IAU d’Hercule](https://commons.wikimedia.org/wiki/File:Hercules_IAU.svg)
+- [Wikimedia Commons — carte IAU de la Grande Ourse](https://commons.wikimedia.org/wiki/File:Ursa_Major_IAU.svg)
+- [Wikimedia Commons — carte IAU de Céphée](https://commons.wikimedia.org/wiki/File:Cepheus_IAU.svg)
 
 ## Cartes orientées pour la Belgique — 7 septembre 2026
 
@@ -52,7 +54,7 @@ Repère principal : les deux étoiles du bord de la « casserole », **Merak** e
 
 ### Dessin à reproduire
 
-![Grande Ourse — agrandissement pédagogique orienté pour la Belgique, le 7 septembre 2026 à 22 h](../assets/formation-guide-astro/constellations/grande-ourse-pedagogique-22h.svg)
+![Grande Ourse — carte classique IAU](../assets/formation-guide-astro/constellations/grande-ourse-classique.svg)
 
 ### Étoiles principales
 
@@ -103,7 +105,7 @@ Son repère principal est le **Trapèze ou Keystone d’Hercule**, quadrilatère
 
 ### Dessin à reproduire
 
-![Hercule — dessin classique pédagogique](../assets/formation-guide-astro/constellations/hercule-classique.svg)
+![Hercule — carte classique IAU](../assets/formation-guide-astro/constellations/hercule-classique.svg)
 
 ### Étoiles principales
 
@@ -150,7 +152,7 @@ Repères : partir de Cassiopée ou de Polaris, puis chercher la forme de maison.
 
 ### Dessin à reproduire
 
-![Céphée — agrandissement pédagogique orienté pour la Belgique, le 7 septembre 2026 à 22 h](../assets/formation-guide-astro/constellations/cephee-pedagogique-22h.svg)
+![Céphée — carte classique IAU](../assets/formation-guide-astro/constellations/cephee-classique.svg)
 
 ### Étoiles principales
 
