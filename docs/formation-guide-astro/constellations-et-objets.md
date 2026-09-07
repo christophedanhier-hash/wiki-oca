@@ -26,6 +26,14 @@ Les valeurs ci-dessous sont des valeurs visuelles indicatives, généralement ar
 - [NASA Skywatching](https://science.nasa.gov/skywatching/)
 - [NASA — objets du Système solaire et ciel profond](https://science.nasa.gov/)
 
+## Cartes orientées pour la Belgique — 7 septembre 2026
+
+Les cartes ci-dessous donnent deux états de la même nuit : **22 h 00 le 7 septembre** et **05 h 00 le 8 septembre 2026**. L’heure est l’heure légale belge d’été (**CEST, UTC+2**). Le calcul est réalisé pour une latitude de **50° N** et une longitude indicative de **4,5° E** ; il convient donc comme support de formation pour la Belgique, mais une carte locale précise peut varier légèrement selon le lieu.
+
+Convention de lecture : **Nord en haut, Est à droite, Sud en bas, Ouest à gauche**. Le bord du cercle représente l’horizon et le centre représente le zénith. Les étoiles sous l’horizon ne sont pas dessinées. Les lignes indiquent uniquement la figure pédagogique de la constellation ; elles ne représentent pas des limites officielles.
+
+Ces cartes indiquent la position du ciel à deux heures précises. Elles ne remplacent pas une carte détaillée de cheminement pour les objets faibles. Pour les objets Messier et NGC, utiliser ensuite les jalons indiqués dans les fiches ci-dessous avec des jumelles ou un télescope.
+
 ---
 
 ## 1. Grande Ourse — Ursa Major (UMa)
@@ -38,7 +46,7 @@ Repère principal : les deux étoiles du bord de la « casserole », **Merak** e
 
 ### Dessin à reproduire
 
-![Schéma de la Grande Ourse](../assets/formation-guide-astro/constellations/grande-ourse.svg)
+![Grande Ourse orientée pour la Belgique, le 7 septembre 2026 à 22 h et le 8 septembre à 5 h](../assets/formation-guide-astro/constellations/grande-ourse-oriente-22h-5h.svg)
 
 ### Étoiles principales
 
@@ -89,7 +97,7 @@ Son repère principal est le **Trapèze ou Keystone d’Hercule**, quadrilatère
 
 ### Dessin à reproduire
 
-![Schéma d’Hercule](../assets/formation-guide-astro/constellations/hercule.svg)
+![Hercule orienté pour la Belgique, le 7 septembre 2026 à 22 h et le 8 septembre à 5 h](../assets/formation-guide-astro/constellations/hercule-oriente-22h-5h.svg)
 
 ### Étoiles principales
 
@@ -136,7 +144,7 @@ Repères : partir de Cassiopée ou de Polaris, puis chercher la forme de maison.
 
 ### Dessin à reproduire
 
-![Schéma de Céphée](../assets/formation-guide-astro/constellations/cephee.svg)
+![Céphée orientée pour la Belgique, le 7 septembre 2026 à 22 h et le 8 septembre à 5 h](../assets/formation-guide-astro/constellations/cephee-oriente-22h-5h.svg)
 
 ### Étoiles principales
 
@@ -201,3 +209,9 @@ Les catalogues peuvent différer de quelques centièmes selon la bande photomét
 - [NASA Skywatching](https://science.nasa.gov/skywatching/)
 
 > Les seuils « œil nu » et « jumelles » sont indicatifs. La pollution lumineuse, la transparence, la hauteur de l’objet, l’adaptation de l’œil et la qualité des jumelles changent fortement le résultat.
+
+## Méthode de calcul et limites
+
+Les positions sont calculées à partir des coordonnées équatoriales indicatives des étoiles principales, de la date, de l’heure légale convertie en UTC, de la longitude de référence et de la latitude du lieu. La projection utilisée est une vue du ciel local : l’altitude est représentée radialement, tandis que l’azimut est orienté depuis le Nord dans le sens horaire. Les magnitudes servent à dimensionner les symboles des étoiles, mais ne constituent pas une mesure de visibilité du ciel réel.
+
+**Source et traçabilité :** script de génération `scripts/generate_constellation_maps.py`, coordonnées et magnitudes documentées dans cette fiche, contrôle astronomique complémentaire recommandé dans Stellarium pour le lieu exact d’observation.
