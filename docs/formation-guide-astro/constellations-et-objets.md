@@ -25,12 +25,16 @@ Les valeurs ci-dessous sont des valeurs visuelles indicatives, généralement ar
 - [In-The-Sky — catalogue et constellations](https://in-the-sky.org/data/)
 - [NASA Skywatching](https://science.nasa.gov/skywatching/)
 - [NASA — objets du Système solaire et ciel profond](https://science.nasa.gov/)
+- [NOIRLab — figures des constellations](https://noirlab.edu/public/education/constellations/)
+- [IAU stick figures — données et convention de tracé](https://github.com/dcf21/constellation-stick-figures)
 
 ## Cartes orientées pour la Belgique — 7 septembre 2026
 
 Les cartes ci-dessous donnent deux états de la même nuit : **22 h 00 le 7 septembre** et **05 h 00 le 8 septembre 2026**. L’heure est l’heure légale belge d’été (**CEST, UTC+2**). Le calcul est réalisé pour une latitude de **50° N** et une longitude indicative de **4,5° E** ; il convient donc comme support de formation pour la Belgique, mais une carte locale précise peut varier légèrement selon le lieu.
 
 Convention de lecture : **Nord en haut, Est à droite, Sud en bas, Ouest à gauche**. Le bord du cercle représente l’horizon et le centre représente le zénith. Les étoiles sous l’horizon ne sont pas dessinées. Les lignes indiquent uniquement la figure pédagogique de la constellation ; elles ne représentent pas des limites officielles.
+
+**Correction des dessins :** les figures ont été reprises avec une convention de type « stick figure » utilisée dans les cartes de planétarium. Il n’existe pas une seule manière officiellement obligatoire de relier les étoiles d’une constellation. La Grande Ourse montre le Grand Chariot et quelques étoiles de la silhouette de l’Ourse ; Hercule montre explicitement le Keystone (π–η–ζ–ε Her) et les prolongements de la figure ; Céphée montre la maison classique à cinq sommets. Les étoiles ajoutées pour compléter la silhouette sont identifiées dans les cartes par leur nom et leur magnitude.
 
 Ces cartes indiquent la position du ciel à deux heures précises. Elles ne remplacent pas une carte détaillée de cheminement pour les objets faibles. Pour les objets Messier et NGC, utiliser ensuite les jalons indiqués dans les fiches ci-dessous avec des jumelles ou un télescope.
 

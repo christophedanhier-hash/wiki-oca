@@ -15,8 +15,15 @@ stars = {
             ('Alioth', 'ε UMa', 12+54/60+1/3600, 55.96, 1.77),
             ('Mizar', 'ζ UMa', 13+23/60+56/3600, 54.93, 2.27),
             ('Alkaid', 'η UMa', 13+47/60+32/3600, 49.31, 1.86),
+            ('Alcor', '80 UMa', 13+25/60+14/3600, 54.99, 4.00),
+            ('Psi UMa', 'ψ UMa', 11+9/60, 44.50, 3.01),
+            ('Theta UMa', 'θ UMa', 9+32/60, 51.60, 3.17),
+            ('Iota UMa', 'ι UMa', 8+59/60, 48.04, 3.14),
         ],
-        'lines': [(0,1),(1,2),(2,3),(3,0),(3,4),(4,5),(5,6)],
+        # Grand Chariot + silhouette pédagogique de l’Ourse. Mizar et Alcor sont
+        # deux étoiles distinctes ; Alcor n’est pas reliée par un segment.
+        'lines': [(0,1),(1,2),(2,3),(3,0),(3,4),(4,5),(5,6),
+                  (2,7),(7,8),(8,9),(9,0)],
     },
     'hercule': {
         'title': 'Hercule — Hercules',
@@ -28,8 +35,20 @@ stars = {
             ('Zeta Her', 'ζ Her', 16+41/60+17/3600, 31.60, 2.81),
             ('Epsilon Her', 'ε Her', 17+0/60+18/3600, 30.93, 3.92),
             ('Delta Her', 'δ Her', 17+15/60+2/3600, 24.84, 3.12),
+            ('Gamma Her', 'γ Her', 16+21/60+55/3600, 19.15, 3.74),
+            ('Theta Her', 'θ Her', 17+56/60+16/3600, 37.25, 3.86),
+            ('Iota Her', 'ι Her', 17+39/60+28/3600, 46.01, 3.80),
+            ('Kappa Her', 'κ Her', 16+8/60+4/3600, 17.05, 5.00),
+            ('Lambda Her', 'λ Her', 17+30/60+44/3600, 26.11, 4.40),
+            ('Mu Her', 'μ Her', 17+46/60+28/3600, 27.72, 3.42),
+            ('Rho Her', 'ρ Her', 17+23/60+41/3600, 37.15, 4.16),
         ],
-        'lines': [(2,3),(3,4),(4,5),(5,2),(4,6),(6,0),(0,1)],
+        # Keystone: Pi-Eta-Zeta-Epsilon. Les autres segments complètent
+        # la figure pédagogique d'Hercule sans prétendre à une norme unique.
+        'lines': [(2,3),(3,4),(4,5),(5,2),
+                  (3,8),(8,9),(9,10),       # tête / jambe nord
+                  (2,13),(13,0),            # bras vers Kornephoros
+                  (4,6),(6,1),(1,11),(11,12)],
     },
     'cephee': {
         'title': 'Céphée — Cepheus',
@@ -42,7 +61,9 @@ stars = {
             ('Iota Cephei', 'ι Cep', 22+50/60, 66.20, 3.52),
             ('Mu Cephei', 'μ Cep', 21+43/60+30/3600, 58.78, 4.10),
         ],
-        'lines': [(0,1),(1,2),(2,5),(5,4),(4,3),(3,6),(6,0)],
+        # Maison classique : Errai-Alfirk-Iota-Alderamin-Delta-Errai.
+        # Zeta et Mu sont conservées comme étoiles remarquables, non reliées.
+        'lines': [(2,1),(1,5),(5,0),(0,3),(3,2)],
     },
 }
 
