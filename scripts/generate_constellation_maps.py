@@ -182,7 +182,57 @@ def focused_map(data, label, year, month, day, utc_hour):
     out.append('</svg>')
     return ''.join(out)
 
+def clean_hercules_map():
+    """Dessin pédagogique fixe d'Hercule : la géométrie reste lisible."""
+    # Convention pédagogique : le Keystone est le torse, avec Eta en haut-gauche,
+    # Pi en haut-droite, Epsilon en bas-droite et Zeta en bas-gauche.
+    pos = {
+        'Eta Her': (330, 235), 'Pi Her': (565, 235),
+        'Zeta Her': (365, 405), 'Epsilon Her': (535, 405),
+        'Kornephoros': (690, 275), 'Ras Algethi': (735, 475),
+        'Gamma Her': (785, 185), 'Delta Her': (635, 500),
+        'Theta Her': (285, 120), 'Iota Her': (205, 75),
+        'Kappa Her': (865, 170), 'Lambda Her': (685, 390),
+        'Mu Her': (700, 550), 'Rho Her': (520, 120),
+    }
+    mags = {name: mag for name, greek, ra, dec, mag in stars['hercule']['stars']}
+    greek = {name: greek for name, greek, ra, dec, mag in stars['hercule']['stars']}
+    # Keystone puis bras, tête et jambes : aucune liaison ne traverse le torse.
+    lines = [
+        ('Eta Her','Pi Her'), ('Pi Her','Epsilon Her'),
+        ('Epsilon Her','Zeta Her'), ('Zeta Her','Eta Her'),
+        ('Pi Her','Rho Her'), ('Rho Her','Theta Her'), ('Theta Her','Iota Her'),
+        ('Pi Her','Kornephoros'), ('Kornephoros','Gamma Her'), ('Gamma Her','Kappa Her'),
+        ('Eta Her','Theta Her'), ('Zeta Her','Delta Her'), ('Delta Her','Ras Algethi'),
+        ('Epsilon Her','Lambda Her'), ('Lambda Her','Mu Her'),
+    ]
+    W,H=980,680
+    out=[f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" role="img" aria-label="Hercule, dessin pédagogique de la constellation">']
+    out.append('<rect width="980" height="680" fill="#050d1b"/>')
+    out.append('<text x="490" y="38" text-anchor="middle" fill="#ffffff" font-size="28" font-family="sans-serif" font-weight="bold">Hercule — dessin pédagogique</text>')
+    out.append('<text x="490" y="68" text-anchor="middle" fill="#bdd0e8" font-size="16" font-family="sans-serif">Belgique — 7 septembre 2026 — 22 h CEST — latitude 50° N</text>')
+    out.append('<rect x="90" y="95" width="800" height="510" rx="20" fill="#0a1c34" stroke="#6682a8" stroke-width="2"/>')
+    out.append('<text x="490" y="120" text-anchor="middle" fill="#ffffff" font-size="16" font-family="sans-serif" font-weight="bold">N</text>')
+    out.append('<text x="920" y="355" text-anchor="middle" fill="#ffffff" font-size="16" font-family="sans-serif" font-weight="bold">E</text>')
+    out.append('<text x="60" y="355" text-anchor="middle" fill="#ffffff" font-size="16" font-family="sans-serif" font-weight="bold">O</text>')
+    out.append('<text x="450" y="155" text-anchor="middle" fill="#93b4da" font-size="15" font-family="sans-serif">KEYSTONE — torse d’Hercule</text>')
+    for a,b in lines:
+        x1,y1=pos[a]; x2,y2=pos[b]
+        out.append(f'<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="#b6c9e4" stroke-width="3" stroke-linecap="round"/>')
+    for name,(x,y) in pos.items():
+        mag=mags[name]
+        out.append(f'<circle cx="{x}" cy="{y}" r="{max(5,10-1.1*mag):.1f}" fill="#ffdf72" stroke="#fff9d5" stroke-width="1.5"/>')
+        dx,dy=12,-10
+        if x>760: dx=-150
+        if name in ('Eta Her','Pi Her','Theta Her','Iota Her'): dy=20
+        out.append(f'<text x="{x+dx}" y="{y+dy}" fill="#ffffff" font-size="15" font-family="sans-serif">{name} — mag. {mag:g}</text>')
+    out.append('<text x="490" y="642" text-anchor="middle" fill="#a9bdd8" font-size="14" font-family="sans-serif">Figure pédagogique : la forme est volontairement agrandie et non à l’échelle.</text>')
+    out.append('</svg>')
+    return ''.join(out)
+
 for key,data in stars.items():
+    if key == 'hercule':
+        (OUT/'hercule-pedagogique-22h.svg').write_text(clean_hercules_map(), encoding='utf-8')
     focused = focused_map(data,'',2026,9,7,20)
     (OUT/f'{key}-pedagogique-22h.svg').write_text(focused, encoding='utf-8')
     svg22 = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 510" role="img" aria-label="{data['title']} le 7 septembre 2026 à 22 heures en Belgique">
