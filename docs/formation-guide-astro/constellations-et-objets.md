@@ -54,7 +54,7 @@ Repère principal : les deux étoiles du bord de la « casserole », **Merak** e
 
 ### Dessin à reproduire
 
-![Grande Ourse — carte classique IAU](../assets/formation-guide-astro/constellations/grande-ourse-classique.svg)
+![Grande Ourse — carte classique IAU](../assets/formation-guide-astro/constellations/grande-ourse-iau-reference.svg)
 
 ### Étoiles principales
 
@@ -105,7 +105,7 @@ Son repère principal est le **Trapèze ou Keystone d’Hercule**, quadrilatère
 
 ### Dessin à reproduire
 
-![Hercule — carte classique IAU](../assets/formation-guide-astro/constellations/hercule-classique.svg)
+![Hercule — carte classique IAU](../assets/formation-guide-astro/constellations/hercule-iau-reference.svg)
 
 ### Étoiles principales
 
@@ -152,7 +152,7 @@ Repères : partir de Cassiopée ou de Polaris, puis chercher la forme de maison.
 
 ### Dessin à reproduire
 
-![Céphée — carte classique IAU](../assets/formation-guide-astro/constellations/cephee-classique.svg)
+![Céphée — carte classique IAU](../assets/formation-guide-astro/constellations/cephee-iau-reference.svg)
 
 ### Étoiles principales
 
