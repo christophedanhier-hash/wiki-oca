@@ -11,6 +11,12 @@ Pour chaque constellation, cette fiche doit permettre de :
 - identifier les objets Messier et NGC associés ;
 - préparer une observation guidée.
 
+## Rappel — magnitude apparente
+
+La **magnitude apparente** indique l’éclat d’un astre vu depuis la Terre. L’échelle est inversée : plus la valeur est petite, plus l’astre paraît brillant. Une étoile de magnitude 2 est donc plus brillante qu’une étoile de magnitude 4.
+
+Les valeurs ci-dessous sont des valeurs visuelles indicatives, généralement arrondies au centième. Pour les étoiles variables, une plage est préférable à une valeur unique. La visibilité dépend du ciel, de la hauteur au-dessus de l’horizon, de la transparence et de l’adaptation de l’œil.
+
 > **Méthode :** les dessins sont des schémas d’apprentissage et non des cartes stellaires à l’échelle. Pour une observation réelle, vérifier la date, l’heure, le lieu, la hauteur et la magnitude dans Stellarium ou une carte du ciel.
 
 ## Sources de vérification
@@ -36,15 +42,15 @@ Repère principal : les deux étoiles du bord de la « casserole », **Merak** e
 
 ### Étoiles principales
 
-| Étoile | Désignation | Rôle dans le dessin | Visibilité |
-|---|---|---|---|
-| Dubhe | α UMa | étoile supérieure du bord de la casserole ; repère vers Polaris | œil nu |
-| Merak | β UMa | étoile inférieure du bord ; repère vers Polaris | œil nu |
-| Phecda | γ UMa | base de la casserole | œil nu |
-| Megrez | δ UMa | jonction entre casserole et manche | œil nu |
-| Alioth | ε UMa | partie centrale du manche | œil nu |
-| Mizar | ζ UMa | coude du manche | œil nu |
-| Alkaid | η UMa | extrémité du manche | œil nu |
+| Étoile | Désignation | Magnitude visuelle indicative | Rôle dans le dessin | Visibilité |
+|---|---|---:|---|---|
+| Dubhe | α UMa | 1,79 | étoile supérieure du bord de la casserole ; repère vers Polaris | œil nu |
+| Merak | β UMa | 2,37 | étoile inférieure du bord ; repère vers Polaris | œil nu |
+| Phecda | γ UMa | 2,44 | base de la casserole | œil nu |
+| Megrez | δ UMa | 3,31 | jonction entre casserole et manche | œil nu |
+| Alioth | ε UMa | 1,77 | partie centrale du manche | œil nu |
+| Mizar | ζ UMa | 2,27 | coude du manche | œil nu |
+| Alkaid | η UMa | 1,86 | extrémité du manche | œil nu |
 
 **Point pédagogique :** Mizar et Alcor forment un couple visuel intéressant. Alcor peut être séparée de Mizar à l’œil nu par de nombreux observateurs ; les jumelles montrent plus facilement la région et la nature multiple de Mizar.
 
@@ -87,15 +93,15 @@ Son repère principal est le **Trapèze ou Keystone d’Hercule**, quadrilatère
 
 ### Étoiles principales
 
-| Étoile | Désignation | Rôle dans le dessin | Visibilité |
-|---|---|---|---|
-| Kornephoros | β Her | l’une des étoiles brillantes de la constellation | œil nu |
-| Ras Algethi | α Her | étoile remarquable, souvent décrite comme une étoile multiple et colorée | œil nu ; séparation instrumentale |
-| Pi Her | π Her | repère du Keystone | œil nu sous ciel correct |
-| Eta Her | η Her | côté ouest du Keystone ; repère vers M13 | œil nu sous ciel correct |
-| Zeta Her | ζ Her | côté ouest du Keystone ; repère vers M13 | œil nu sous ciel correct |
-| Epsilon Her | ε Her | côté est du Keystone | œil nu sous ciel correct |
-| Delta Her | δ Her | zone sud de la constellation | œil nu |
+| Étoile | Désignation | Magnitude visuelle indicative | Rôle dans le dessin | Visibilité |
+|---|---|---:|---|---|
+| Kornephoros | β Her | 2,80 | l’une des étoiles brillantes de la constellation | œil nu |
+| Ras Algethi | α Her | 2,78, variable | étoile remarquable, souvent décrite comme une étoile multiple et colorée | œil nu ; séparation instrumentale |
+| Pi Her | π Her | 3,16 | repère du Keystone | œil nu sous ciel correct |
+| Eta Her | η Her | 3,49 | côté ouest du Keystone ; repère vers M13 | œil nu sous ciel correct |
+| Zeta Her | ζ Her | 2,81 | côté ouest du Keystone ; repère vers M13 | œil nu sous ciel correct |
+| Epsilon Her | ε Her | 3,92 | côté est du Keystone | œil nu sous ciel correct |
+| Delta Her | δ Her | 3,12 | zone sud de la constellation | œil nu |
 
 ### Objets Messier et NGC
 
@@ -134,15 +140,15 @@ Repères : partir de Cassiopée ou de Polaris, puis chercher la forme de maison.
 
 ### Étoiles principales
 
-| Étoile | Désignation | Particularité | Visibilité |
-|---|---|---|---|
-| Alderamin | α Cep | étoile la plus brillante de Céphée | œil nu |
-| Alfirk | β Cep | étoile variable de type Beta Cephei | œil nu |
-| Errai | γ Cep | repère proche de la région polaire ; système multiple | œil nu |
-| Delta Cephei | δ Cep | prototype des étoiles variables céphéides | œil nu ; variation à suivre |
-| Zeta Cephei | ζ Cep | étoile brillante du dessin | œil nu |
-| Iota Cephei | ι Cep | repère de la partie nord-est | œil nu sous bon ciel |
-| Mu Cephei | μ Cep | supergéante rouge, « étoile Grenat » de Herschel | œil nu ; couleur aux jumelles |
+| Étoile | Désignation | Magnitude visuelle indicative | Particularité | Visibilité |
+|---|---|---:|---|---|
+| Alderamin | α Cep | 2,44 | étoile la plus brillante de Céphée | œil nu |
+| Alfirk | β Cep | 3,23, variable | étoile variable de type Beta Cephei | œil nu |
+| Errai | γ Cep | 3,21 | repère proche de la région polaire ; système multiple | œil nu |
+| Delta Cephei | δ Cep | 3,5–4,4, variable | prototype des étoiles variables céphéides | œil nu ; variation à suivre |
+| Zeta Cephei | ζ Cep | 3,35 | étoile brillante du dessin | œil nu |
+| Iota Cephei | ι Cep | 3,52 | repère de la partie nord-est | œil nu sous bon ciel |
+| Mu Cephei | μ Cep | autour de 4,1, variable | supergéante rouge, « étoile Grenat » de Herschel | œil nu ; couleur aux jumelles |
 
 ### Objets Messier et NGC
 
@@ -177,6 +183,14 @@ Céphée ne contient pas d’objet Messier officiellement associé. Elle est cep
 | Grande Ourse | Grand Chariot | Merak–Dubhe vers Polaris | 7 | M81/M82, M97, M101, M108, M109 |
 | Hercule | Keystone/Trapèze | entre Lyre et Couronne boréale | 2 | M13, M92, NGC 6207 |
 | Céphée | Maison/pentagone | près de Polaris et Cassiopée | 0 | NGC 188, NGC 6939, NGC 7380, NGC 6946 |
+
+## Sources des magnitudes
+
+- [TheSkyLive — étoiles brillantes de la Grande Ourse](https://theskylive.com/sky/constellations/ursa_major-bright-stars)
+- [In-The-Sky — constellation d’Hercule](https://in-the-sky.org/data/constellation.php?id=41)
+- [TheSkyLive — étoiles brillantes de Céphée](https://theskylive.com/sky/constellations/cepheus-bright-stars)
+
+Les catalogues peuvent différer de quelques centièmes selon la bande photométrique, l’époque et le traitement des étoiles multiples ou variables. Pour un exercice noté, reprendre les valeurs demandées par le formateur ou celles affichées dans la carte utilisée pendant la séance.
 
 ## Sources web utilisées pour la préparation
 
